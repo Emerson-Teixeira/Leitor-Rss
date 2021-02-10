@@ -9,7 +9,7 @@
     <div id="container">
         <div id="conteudoEsq">
             <div id="logo"></div>
-            <h1>J-rss Reader</h1>
+            <h1 style="font-size: 3rem; text-transform: uppercase;">J-rss Reader</h1>
         </div>
         <div id="conteudoDir">
             <div id="textInicial">
@@ -46,10 +46,10 @@
         const cadastro = document.getElementById('containerCadastro');
         const botaoCadastroOpen = document.getElementById('cadastre-se')
         const botaoCadastroClose = document.getElementById('closeCadastro')
-        botaoCadastroOpen.addEventListener('click',function (){
+        botaoCadastroOpen.addEventListener('click',()=>{
             cadastro.style.display = 'flex';
         });
-        botaoCadastroClose.addEventListener('click',function(){
+        botaoCadastroClose.addEventListener('click',()=>{
             cadastro.style.display = 'none';
         })
     </script>

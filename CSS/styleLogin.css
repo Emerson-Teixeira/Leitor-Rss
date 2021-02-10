@@ -177,10 +177,17 @@ form#login{
     top: 5%;
     background: url("../recursos/invalid-circle-close-delete-cross-x-incorrect-icon.png") no-repeat center;
     background-size: cover;
+    border-radius: 200px;
     border: none;
 }
 #closeCadastro:hover{
     cursor: pointer;
     opacity: 85%;
-    
+    outline: none;
+}
+#logo{
+    background: url("../recursos/rss-icon.png") center no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
 }
