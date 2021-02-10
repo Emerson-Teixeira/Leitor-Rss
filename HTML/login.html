@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="../CSS/styleLogin.css">
+</head>
+<body>
+    <div id="container">
+        <div id="conteudoEsq">
+            <div id="logo"></div>
+            <h1>J-rss Reader</h1>
+        </div>
+        <div id="conteudoDir">
+            <div id="textInicial">
+                <h2>Bem-vindo! Faça seu login para continuar</h2>
+            </div>
+            <form id="login" action="" autocomplete="off">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="emailLogin" autofocus placeholder="Digite seu email" class="inputPrincipal">
+                <label for="senha">Senha:</label>
+                <input type="password" name="senha" id="senhaLogin" placeholder="Digite sua senha" class="inputPrincipal">
+                <input type="submit" value="Entrar" id="botaoLogar">
+            </form>
+            <div id="cadastro">
+                <h1>Nao possui uma conta?</h1>
+                <button id="cadastre-se">Cadastre-se</button>
+            </div>
+        </div>
+    </div>
+    <div id="containerCadastro">
+        <button id="closeCadastro"></button>
+        <h1 style="margin-bottom: 3%; margin-top: -3%; color: white; font-size: 2rem; text-transform: uppercase;">Preencha as informaçoes para realizar o cadastro</h1>
+        <form id="realizarCadastro" action="" autocomplete="off">
+            <label for="nome">Nome:</label>
+            <input class="inputCadastro" type="text" name="nome" id="nomeCadastro" autofocus placeholder="digite seu nome">
+            <label for="email">Email:</label>
+            <input class="inputCadastro" type="email" name="email" id="emailCadastro" placeholder="Digite seu email">
+            <label for="senha">Senha:</label>
+            <input class="inputCadastro" type="password" name="senha" id="senhaCadastro" placeholder="digite sua senha">
+            <input class="inputCadastro" type="submit" value="Realizar cadastro" id="botaoLogar">
+        </form>
+    </div>
+    <script>
+        //logica Tela Cadastro
+        const cadastro = document.getElementById('containerCadastro');
+        const botaoCadastroOpen = document.getElementById('cadastre-se')
+        const botaoCadastroClose = document.getElementById('closeCadastro')
+        botaoCadastroOpen.addEventListener('click',function (){
+            cadastro.style.display = 'flex';
+        });
+        botaoCadastroClose.addEventListener('click',function(){
+            cadastro.style.display = 'none';
+        })
+    </script>
+</body>
+</html>
