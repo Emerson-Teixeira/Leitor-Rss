@@ -23,8 +23,8 @@
 body,html{
     width: 100%;
     height: 100%;
-    min-width: 1280px;
-    min-height: 720px;
+    min-width: 1600px;
+    min-height: 900px;
 }
 body{
     display: flex;
@@ -69,6 +69,8 @@ body{
     justify-content: center;
     align-items: center;
     flex-flow: nowrap column;
+    min-width: 1600px;
+    min-height: 900px
     
 }
 form#realizarCadastro{
