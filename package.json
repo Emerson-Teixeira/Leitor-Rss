@@ -1,0 +1,29 @@
+{
+  "name": "Trabalho-ProgWeb",
+  "version": "1.0.0",
+  "description": "Trabalho prog web 2020.2",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./BackEnd/src/server.js",
+    "dev": "nodemon ./BackEnd/src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emerson-Teixeira/Trabalho-ProgWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Emerson-Teixeira/Trabalho-ProgWeb/issues"
+  },
+  "homepage": "https://github.com/Emerson-Teixeira/Trabalho-ProgWeb#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0"
+  }
+}
