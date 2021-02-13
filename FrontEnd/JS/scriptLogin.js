@@ -1,5 +1,6 @@
 //logica Tela Cadastro 
 const cadastro = document.getElementById('paginaCadastro');
+const
 const botaoCadastroOpen = document.getElementById('activeCadastro')
 const botaoCadastroClose = document.getElementById('closeCadastro')
 botaoCadastroOpen.addEventListener('click',()=>{

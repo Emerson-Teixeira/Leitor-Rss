@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/stylePrincipal.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <header id="topoFixo">
+            <div id="logoMenu">
+                <button id='side1' class="sideBar"></button>
+                <div id="logo">J-rss Reader</div>
+            </div>
+            <div id="searchBar">
+                <form action="" method="GET" autocomplete="off">
+                    <input type="text" name="" id="">
+                    <input type="submit" value="">
+                </form>
+            </div>
+            <div id="privateInfo">
+                <a href="#" id="menuDropdown">UserName</a>
+            </div>
+        </header>
+        <aside id="menulateral">
+            <div id="logoMenu" class="fixed">
+                <button id="side2" class="sideBar"></button>
+                <div id="logo">J-rss Reader</div>
+            </div>
+            <nav>
+                <dir style="height: 100vh;"></dir>
+            </nav>
+        </aside>
+        <div id="content">
+            <article>
+                <section></section>
+            </article>
+        </div>
+    </div>
+    <script>
+       //logica Tela Cadastro 
+        const cadastro = document.getElementById('menulateral');
+        const telaNoticia = document.getElementById('content')
+        const botaoCadastroOpen = document.getElementById('side1')
+        const botaoCadastroClose = document.getElementById('side2')
+        botaoCadastroOpen.addEventListener('click',()=>{
+            cadastro.style.display = 'block';
+        });
+        botaoCadastroClose.addEventListener('click',()=>{
+            cadastro.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
