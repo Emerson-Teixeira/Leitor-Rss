@@ -3,7 +3,15 @@
     padding: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     box-sizing: border-box;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+}
+body, html{
+    height: 100%;
+  }
+body{
+    background-color: #f9a26c;
 }
 ::-webkit-input-placeholder {
     color: rgb(53, 53, 53);
@@ -20,176 +28,191 @@
  :-ms-input-placeholder {
     color: rgb(53, 53, 53);
  }
-body,html{
+ #container{
+     display: flex;
+     justify-content: space-evenly;
+     align-items:center;
+     flex-flow: row wrap;
+     background-color: #EFEEEE;
+     padding: 100px 0;
+ }
+ .marginDiv{
+    margin: 30px;
+    margin-top: 100px;
+ }
+ #loginContent{
+    width: 600px;
+    height: 500px;
+    padding-top: 100px;
+    order: 1;
+ }
+ #login{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-flow: column nowrap;
+     width: 600px;
+     border: 1px solid gray;
+     background: white;
+     border-radius: 20px;
+     box-shadow: 5px 5px 5px black;
+     padding: 50px 30px;
+     order: 2;
+ }
+ #login form{
+     position: relative;
+     width: 550px;
+     border-bottom: 2px solid rgb(119, 119, 119);
+     margin-bottom: 30px;
+}
+form input{
     width: 100%;
-    height: 100%;
-    min-width: 1600px;
-    min-height: 900px;
-}
-body{
+    height: 50px;
+    border: 1px solid gray;
+    margin: 10px 0;
+    border-radius: 10px;
+    padding: 10px;
+ }
+ #login form input[type = "submit"]{
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+ }
+ #login form input[type = "submit"]:hover{
+     cursor: pointer;
+    background-color: rgb(199, 199, 199);
+ }
+ #signInAPI{
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    background-color: rgb(190, 190, 190);
-}
-#container{
-    display: flex;
     flex-flow: row nowrap;
-    width: 80%;
-    height: 80%;
-    border-radius: 30px;
-    box-shadow: 5px 5px 15px black;
+    margin: 20px 0;
+
+ }
+ #logGoogle{
+     width: 47%;
+     height: 60px;
+     background-color: #dd4b39;
+     border-radius: 10px;
+    font-weight: bold;
+    color: white;
+ }
+ #logGoogle:hover{
+    cursor: pointer;
+    background-color: #e03018;
+   
 }
-#conteudoDir{
-    flex-flow: column nowrap;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 50%;
-    background-color: #4a7c59;
-    border-bottom-right-radius: 30px;
-    border-top-right-radius: 30px;
+ #logFacebook{
+    width: 47%;
+    height: 60px;
+    background-color: #3b5998;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
 }
-#conteudoEsq{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
+#logFacebook:hover{
+    cursor: pointer;
+    background-color: #1b4399;
+    
+}
+#activeCadastro{
+    margin-top: 20px;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #f26627;
+    color: white;
+ }
+ #activeCadastro:hover{
+    cursor: pointer;
+    background-color: #f05006;
+ }
+ #rodapé{
+     width: 100%;
+     height:100px;
+     display: block;
+     padding: 35px 100px;
+}
+
+#paginaCadastro{
+    position: fixed;
     height: 100%;
-    background-color: #faf3dd;
-    border-bottom-left-radius: 30px;
-    border-top-left-radius: 30px;
-}
-#containerCadastro{
-    position: absolute;
     width: 100%;
-    height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
     display: none;
     justify-content: center;
     align-items: center;
-    flex-flow: nowrap column;
-    min-width: 1600px;
-    min-height: 900px
-    
-}
-form#realizarCadastro{
-    display: flex;
-    justify-content: flex-start;
-    align-content: center;
     flex-flow: column nowrap;
-    width: 70%;
-    height: 70%;
-    background-color: #4a7c59;
-    border-radius: 12px;
-    box-shadow: 5px 5px 15px black;
-    padding: 5%;
-    padding-top: 3%;
+    overflow-y: scroll;
+    z-index: 0;
 }
-.inputCadastro{
-    display: block;
-    margin-bottom: 3%;
-    margin-top: 2%;
-    background-color: #faf3dd;
-    border: 2px solid black;
-    border-radius: 12px;
-    padding: 5px;
-}
-.inputCadastro:focus{
-    outline: none;
-}
-label{
-    display: block;
-}
-form#login{
-    flex-flow: column nowrap;
+
+#paginaCadastro form{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: flex-start;
-    width: 70%;
-    margin-top: 7%;
-    margin-bottom: 10%;
-    border: 2px solid black;
-    border-radius: 12px;
-    padding: 20px;
-    background-color: #faf3dd;
-}
-.inputPrincipal{
-    display: block;
-    width: 100%;
-    margin-bottom: 6%;
-    margin-top: 3.5%;
-    background: none;
-    padding: 5px;
-    border: 2px solid black;
-    border-radius: 12px;
-
-}
-.inputPrincipal:focus{
-   outline: none;
-
-}
-#imgLogin{
-    width: 100px;
-    height: 110px;
-    position: absolute;
-    background-image: url('../recursos/img_422573.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    top: 10.8%;
-}
-#botaoLogar{
-    align-self: center;
-    width: 50%;
-    margin-top: 30px;
-}
-#cadastro{
-    margin-top: -5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-flow: column nowrap;
+    width: 800px;
+    height: 900px;
+    border: 1px solid gray;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px black;
+    padding: 50px 30px;
+    z-index: 1;
 }
-#cadastro button{
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    width: 90%;
-    border: none;
-    background-color: #faf3dd;
-}
-#cadastro button:hover{
+#paginaCadastro form input[type = "submit"]:hover{
     cursor: pointer;
-    background-color: #c8d5b9;
+    background-color: rgb(199, 199, 199);;
+ }
+label{
+    margin-bottom: -2%;
+    font-size: 2rem;
 }
-#cadastro button:focus{
-    outline: none;
-}
-#textInicial{
-    margin-top: 5%;
-}
+
 #closeCadastro{
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    right: 5%;
-    top: 5%;
-    background: url("../recursos/invalid-circle-close-delete-cross-x-incorrect-icon.png") no-repeat center;
+    font-size: 2rem;
+    background: white;
     background-size: cover;
-    border-radius: 200px;
     border: none;
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin-top: -50px;
+
 }
 #closeCadastro:hover{
+    color: gray;
     cursor: pointer;
-    opacity: 85%;
-    outline: none;
+
 }
-#logo{
-    background: url("../recursos/rss-icon.png") center no-repeat;
-    background-size: cover;
-    width: 200px;
-    height: 200px;
-}
+
+
+ @media (max-width: 1336px){
+    #container{
+        display: flex;
+        justify-content:center;
+        align-items:center;
+        flex-flow: column wrap;
+        background-color: #EFEEEE;
+        padding: 100px 0;
+    }
+    #loginContent{
+        width: 500px;
+        height: 100px;
+        text-align: center;
+        padding-top: 0;
+     }
+     #loginContent p{
+         text-indent: center;
+     }
+ }

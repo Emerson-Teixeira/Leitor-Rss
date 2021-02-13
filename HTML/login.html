@@ -6,52 +6,46 @@
     <link rel="stylesheet" href="../CSS/styleLogin.css">
 </head>
 <body>
-    <div id="container">
-        <div id="conteudoEsq">
-            <div id="logo"></div>
-            <h1 style="font-size: 3rem; text-transform: uppercase;">j-rss Reader</h1>
-        </div>
-        <div id="conteudoDir">
-            <div id="textInicial">
-                <h2>Bem-vindo! Faça seu login para continuar</h2>
+        <div id="container">
+            <div id="loginContent" class = 'marginDiv'>
+                <h2 id="nomeSite" style="font-weight: bolder; font-size: 3rem; text-transform: uppercase;">J-RSS Reader</h2>
+                <p id="textoLogin" style="text-align: justify; margin-top: 30px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea vitae alias repellendus corrupti cum nobis, magnam aliquam at odit neque ipsum iusto excepturi a nesciunt natus beatae modi voluptas aliquid!</p>
             </div>
-            <form id="login" action="" autocomplete="off">
+
+            <div id="login" class = 'marginDiv'>
+                <form action="" method="POST" autocomplete="off">
+                    <input type="text" name="Email" id="emailLogin" autofocus placeholder="Email">
+                    <input type="password" name="senha" id="senhaLogin" placeholder="Senha">
+                    <input type="submit" value="Entrar">
+                    <div id="signInAPI">
+                        <button id="logGoogle">Google</button>
+                        <button id="logFacebook">Facebook</button>
+                    </div>
+                </form>
+                <div id="cadastro">
+                    <button id="activeCadastro">Crie uma Conta</button>
+                </div>
+            </div>
+        </div>
+        <footer id="rodapé">
+            Todos os direitos reservados
+        </footer>
+
+        <div id="paginaCadastro">
+            <form action="" method="POST" autocomplete="off">
+                <button id="closeCadastro">X</button>
+                <h1 style="align-self: center; font-size: 3rem; text-transform: uppercase; font-weight: bolder;">Cadastre-se!</h1>
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" id="nomeCadastro" placeholder="Digite seu nome">
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="emailLogin" autofocus placeholder="Digite seu email" class="inputPrincipal">
+                <input type="text" name="email" id="emailCadastro" autofocus placeholder="Digite ser email">
                 <label for="senha">Senha:</label>
-                <input type="password" name="senha" id="senhaLogin" placeholder="Digite sua senha" class="inputPrincipal">
-                <input type="submit" value="Entrar" id="botaoLogar">
+                <input type="password" name="senha" id="senhaCadastro" placeholder="Digite sua senha">
+                <label for="data">Data de nascimento:</label>
+                <input type="date" name="data" id="dataCadastro">
+                <input type="submit" value="Cadastre-se">
             </form>
-            <div id="cadastro">
-                <h1>Nao possui uma conta?</h1>
-                <button id="cadastre-se">Cadastre-se</button>
-            </div>
         </div>
-    </div>
-    <div id="containerCadastro">
-        <button id="closeCadastro"></button>
-        <h1 style="margin-bottom: 3%; margin-top: -3%; color: white; font-size: 2rem; text-transform: uppercase;">Preencha as informaçoes para realizar o cadastro</h1>
-        <form id="realizarCadastro" action="" autocomplete="off">
-            <label for="nome">Nome:</label>
-            <input class="inputCadastro" type="text" name="nome" id="nomeCadastro" autofocus placeholder="Digite seu nome">
-            <label for="email">Email:</label>
-            <input class="inputCadastro" type="email" name="email" id="emailCadastro" placeholder="Digite seu email">
-            <label for="senha">Senha:</label>
-            <input class="inputCadastro" type="password" name="senha" id="senhaCadastro" placeholder="Digite sua senha">
-            <input class="inputCadastro" type="submit" value="Realizar cadastro" id="botaoLogar">
-        </form>
-    </div>
-    <script>
-        //logica Tela Cadastro
-        const cadastro = document.getElementById('containerCadastro');
-        const botaoCadastroOpen = document.getElementById('cadastre-se')
-        const botaoCadastroClose = document.getElementById('closeCadastro')
-        botaoCadastroOpen.addEventListener('click',()=>{
-            cadastro.style.display = 'flex';
-        });
-        botaoCadastroClose.addEventListener('click',()=>{
-            cadastro.style.display = 'none';
-        })
-    </script>
+        <script src="../JS/scriptLogin.js"></script>
 </body>
 </html>
