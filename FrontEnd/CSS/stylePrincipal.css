@@ -7,9 +7,7 @@
     border: none;
     outline: none;
 }
-body, html{
-    height: 100%;
-  }
+
 body{
     background-color: #EFEEEE;
 }
@@ -98,7 +96,6 @@ aside#menulateral{
     padding-top: 1px;
 }
 #content{
-    min-height: 100vh;
     width: 100%;
     margin-top: 80px;
     display: flex;
@@ -108,8 +105,6 @@ aside#menulateral{
 
 article{
     width: 60%;
-    height: 800px;
-    border-bottom: 1px solid black ;
 }
 nav{
     margin-top: 60px;
@@ -125,6 +120,7 @@ nav{
     align-items: center;
     width: 700px;
     height: 40px;
+    margin: 0 30px;
 }
 #searchBar form{
     display: flex;
@@ -150,14 +146,45 @@ nav{
     cursor: pointer;
     background-color: rgb(200, 200, 200);
 }
+#privateInfo{
+    margin-right: 10px;
+}
 a{
-    display: inline-block;
+    display: block;
     text-decoration: none;
     text-indent: center;
     line-height: 60px;
     padding: 10px;
     color: black ;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
     height: 80px;
+}
+ul{
+    list-style: none;
+}
+.dropmenu{
+    text-align: center;
+    width: 150px;
+    display: block;
+    position: relative;
+    border: 1px solid black;
+}
+.dropmenu li ul{
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    left: -1px;
+    display: none;
+}
+.dropmenu li:hover ul {
+    display: block;
+}
+.dropmenu li:hover ul li {
+    width: 150px;
+    text-align: center;
+    display: block;
+    background-color: #f26627;
+    border: 1px solid black;
+}
+.dropmenu li:hover ul li:hover {
+    background-color: #f18959;
 }

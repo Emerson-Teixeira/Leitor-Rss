@@ -48,6 +48,18 @@
                     <input type="button" value="Cancelar cadastro" id="closeCadastro">
                 </form>
         </div>
-        <script src="../JS/scriptLogin.js"></script>
+        <script>
+            const cadastro = document.getElementById('paginaCadastro');
+            const botaoCadastroOpen = document.getElementById('activeCadastro')
+            const botaoCadastroClose = document.getElementById('closeCadastro')
+            botaoCadastroOpen.addEventListener('click',()=>{
+                cadastro.style.display = 'flex';
+                document.body.style.overflow = 'hidden'
+            });
+            botaoCadastroClose.addEventListener('click',()=>{
+                cadastro.style.display = 'none';
+                document.body.style.overflow = 'initial'
+            });
+        </script>
 </body>
 </html>
