@@ -9,13 +9,18 @@ const modeloUsuario = new mongoose.Schema({
         type: String,
         require: true,
         unique: true,
-        lowercase: true,
+        lowercase: true
     },
     senha:{
         type: String,
         require: true,
         select: false,
     },
+    rssList:[{
+        url:String,
+        tags:[{nomeTag:String,}],
+        nome:String,
+    }],
     createdAt:{
         type:Date,
         default: Date.now,

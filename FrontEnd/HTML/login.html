@@ -13,10 +13,10 @@
             </div>
 
             <div id="login" class = 'marginDiv'>
-                <form action="/login/autenticacao" method="POST" autocomplete="on">
-                    <input type="text" name="Email" id="emailLogin" autofocus placeholder="Email">
+                <form id="formLogin" autocomplete="on">
+                    <input type="text" name="email" id="emailLogin" autofocus placeholder="Email">
                     <input type="password" name="senha" id="senhaLogin" placeholder="Senha">
-                    <input type="submit" value="Entrar">
+                    <input id="submitLoginButton" type="submit" value="Entrar">
                     <div id="signInAPI">
                         <button id="logGoogle">Google</button>
                         <button id="logFacebook">Facebook</button>
@@ -32,34 +32,23 @@
         </footer>
 
         <div id="paginaCadastro">
-                <form action="/login/cadastro" method="POST" autocomplete="on">
+            <h1 style="align-self: center; font-size: 3rem; text-transform: uppercase; font-weight: bolder;">Cadastre-se!</h1>
+                <form id="formCadastro" autocomplete="on">
                     <h1 style="align-self: center; font-size: 3rem; text-transform: uppercase; font-weight: bolder;">Cadastre-se!</h1>
 
                     <label for="nome">Nome:</label>
-                    <input type="text" name="nome" id="nomeCadastro" placeholder="Digite seu nome">
+                    <input type="text" name="nome" id="nomeCadastro" placeholder="Digite seu nome" required>
 
                     <label for="email">Email:</label>
-                    <input type="text" name="email" id="emailCadastro" autofocus placeholder="Digite ser email">
+                    <input type="email" name="email" id="emailCadastro" autofocus placeholder="Digite ser email" required>
 
                     <label for="senha">Senha:</label>
-                    <input type="password" name="senha" id="senhaCadastro" placeholder="Digite sua senha">
+                    <input type="password" name="senha" id="senhaCadastro" placeholder="Digite sua senha" required>
 
-                    <input type="submit" value="Cadastre-se">
+                    <input id="submitCadastroButton" type="submit" value="Cadastre-se">
                     <input type="button" value="Cancelar cadastro" id="closeCadastro">
                 </form>
         </div>
-        <script>
-            const cadastro = document.getElementById('paginaCadastro');
-            const botaoCadastroOpen = document.getElementById('activeCadastro')
-            const botaoCadastroClose = document.getElementById('closeCadastro')
-            botaoCadastroOpen.addEventListener('click',()=>{
-                cadastro.style.display = 'flex';
-                document.body.style.overflow = 'hidden'
-            });
-            botaoCadastroClose.addEventListener('click',()=>{
-                cadastro.style.display = 'none';
-                document.body.style.overflow = 'initial'
-            });
-        </script>
+        <script src="../JS/scriptLogin.js"></script>
 </body>
 </html>
