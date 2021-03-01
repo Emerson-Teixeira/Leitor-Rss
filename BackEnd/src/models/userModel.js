@@ -1,4 +1,5 @@
 const mongoose = require('../database/bancoConnect');
+const crypto = require('crypto')
 
 const modeloUsuario = new mongoose.Schema({
     nome:{
@@ -15,6 +16,7 @@ const modeloUsuario = new mongoose.Schema({
         type: String,
         require: true,
         select: false,
+        set: value => crypto.createHash('md5').update(value).digest('hex')
     },
     rssList:[{
         url:String,

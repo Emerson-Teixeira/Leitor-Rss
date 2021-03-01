@@ -2,6 +2,7 @@
 const cadastro = document.getElementById('paginaCadastro');
 const botaoCadastroOpen = document.getElementById('activeCadastro')
 const botaoCadastroClose = document.getElementById('closeCadastro')
+const token = null
 botaoCadastroOpen.addEventListener('click',()=>{
     cadastro.style.display = 'flex';
     document.body.style.overflow = 'hidden'
@@ -15,7 +16,6 @@ botaoCadastroClose.addEventListener('click',()=>{
 const formCadastro = document.getElementById("formCadastro")
 const enviarDados = async (e) => {
     e.preventDefault();
-
     var formJson =  convertFDtoJSON(new FormData(formCadastro))
     var header = new Headers({'Content-Type': 'application/json'})
     var myInit = {method: 'POST',
@@ -27,7 +27,7 @@ const enviarDados = async (e) => {
             alert("Erro ao realizar cadastro")
         }
         else
-        response.text().then(response => alert(response))
+        response.text().then(response => redirectHome(response))
     })
 }
 formCadastro.addEventListener('submit',enviarDados)
@@ -37,7 +37,6 @@ const formLogin = document.getElementById("formLogin")
 const verificarDados = async (e) => {
     e.preventDefault();
     var formJson =  convertFDtoJSON(new FormData(formLogin))
-    console.log(formJson)
     var header = new Headers({'Content-Type': 'application/json'})
     var myInit = {method: 'POST',
     headers: header,
@@ -48,18 +47,31 @@ const verificarDados = async (e) => {
             alert('Erro ao fazer login')
         }
         else
-        response.text().then(response => alert(response))
+        response.text().then(response =>{
+            console.log(response)
+            redirectHome(response)
+        } )
     })
 }
 formLogin.addEventListener('submit',verificarDados)
 
-
-
 //funcao para converter FormData to json
 function convertFDtoJSON(formData){
-    let obj = {}
+    var obj = {}
     for(let key of formData.keys()){
         obj[key] = formData.get(key)
     }
     return JSON.stringify(obj)
+}
+//funcao para redirecionarHome
+
+function redirectHome(response){
+    var header = new Headers({'Content-Type': 'application/json','x-access-token': response})
+    var myInit = {method: 'GET',
+    headers: header}
+    console.log(response)
+    fetch('/home',myInit).then((response) =>{    if(!response.ok){
+            alert('Erro ao Entrar na home')
+        }
+    })
 }
