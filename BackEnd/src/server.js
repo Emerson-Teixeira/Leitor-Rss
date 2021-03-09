@@ -2,19 +2,70 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const static = path.join(__dirname,'../',"../",'FrontEnd') // Caminho até os arquivos frontEnd
-const PORT = 3000
-const jwt = require('./controller/jwt')
+const handlebars = require('express-handlebars')
+const session = require('express-session')
+const User = require('./models/userModel')
+const{
+    PORT = 3000,
+    MAX_LIFETIME = 7200000,
+    SESS_NAME = 'sId',
+    SESS_SECRET = 'Eutenhosoquatroanos'
 
+} = process.env
+
+app.engine('handlebars',handlebars({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
+app.use(session({
+    secret:SESS_SECRET,
+    resave:false,
+    saveUninitialized:false,
+    name: SESS_NAME,
+    cookie:{
+    maxAge: MAX_LIFETIME,
+    sameSite: true,
+    secure:false
+}}))
+
+//middleware
+var redirectLP = (req,res,next)=>{
+    if(!req.session.userId){
+        res.status(401).redirect('/')
+    }
+    else{
+        next()
+    }
+}
+var redirectHome = (req,res,next)=>{
+    if(req.session.userId){
+        res.redirect('/home')
+    }
+    else{
+        next()
+    }
+}
+
+var getUserData = (req,res,next) =>{
+  next()
+}
 app.use(express.static(path.join(static)));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/entrar',require('./controller/controladorAuten'))
+app.use('/entrar',redirectHome,require('./controller/controladorAuten'))
+app.use('/home',redirectLP,getUserData,require('./controller/home'))
+
 
 //pagina inicial
-app.get('/',(req,res)=> res.sendFile(path.join(static,'HTML','login.html')))
-app.get('/home',jwt.verifyAuth,(req,res)=>{
-    res.sendFile(path.join(static,'HTML','templatePrincipal.html'))
+app.get('/',redirectHome,(req,res)=> res.sendFile(path.join(static,'HTML','login.html')))
+app.get('/logout',(req,res)=> {
+    req.session.destroy(err => {
+        if(!err){
+            res.clearCookie(SESS_NAME)
+            res.redirect('/')
+        }
+    } )
 })
 
+//Caso nao ache rota
+app.get('*',(req,res)=>res.status(404).send('what???'))
 
 app.listen(PORT, ()=>console.log(`Servidor rodando na porta: ${PORT}`))

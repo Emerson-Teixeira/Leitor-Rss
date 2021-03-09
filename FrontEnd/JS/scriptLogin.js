@@ -27,7 +27,7 @@ const enviarDados = async (e) => {
             alert("Erro ao realizar cadastro")
         }
         else
-        response.text().then(response => redirectHome(response))
+         redirectHome(response)
     })
 }
 formCadastro.addEventListener('submit',enviarDados)
@@ -44,13 +44,10 @@ const verificarDados = async (e) => {
 
     fetch('/entrar/login',myInit).then((response) =>{
         if(!response.ok){
-            alert('Erro ao fazer login')
+            alert("Erro ao realizar login")
         }
         else
-        response.text().then(response =>{
-            console.log(response)
-            redirectHome(response)
-        } )
+         redirectHome(response)
     })
 }
 formLogin.addEventListener('submit',verificarDados)
@@ -66,12 +63,9 @@ function convertFDtoJSON(formData){
 //funcao para redirecionarHome
 
 function redirectHome(response){
-    var header = new Headers({'Content-Type': 'application/json','x-access-token': response})
+    var header = new Headers({'x-access-token': response})
     var myInit = {method: 'GET',
-    headers: header}
-    console.log(response)
-    fetch('/home',myInit).then((response) =>{    if(!response.ok){
-            alert('Erro ao Entrar na home')
-        }
-    })
+    headers: header
+    }
+    window.location.href = '/home'
 }

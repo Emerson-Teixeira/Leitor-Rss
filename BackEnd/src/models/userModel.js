@@ -20,7 +20,7 @@ const modeloUsuario = new mongoose.Schema({
     },
     rssList:[{
         url:String,
-        tags:[{nomeTag:String,}],
+        tags:[{nomeTag:String}],
         nome:String,
     }],
     createdAt:{
