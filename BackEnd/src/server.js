@@ -44,15 +44,32 @@ var redirectHome = (req,res,next)=>{
     }
 }
 
-var getUserData = (req,res,next) =>{
-  next()
+var getUserData =  (req,res,next) =>{
+    console.log(req.session.userId)
+    if(!req.session.userId){
+        res.redirect('/logout')
+    }
+    else{
+         User.findOne({'_id':`${req.session.userId}`}, 'nome rssList email', (err, user)=> {
+                if (err){
+                    res.redirect('/logout')
+                }
+                else{
+                    const dados = {'nome':`${user.nome}`,'rssList':user.rssList,'email':`${user.email}`}
+                    res.locals.user = dados
+                    next()
+                }
+        })
+    }
 }
 app.use(express.static(path.join(static)));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/entrar',redirectHome,require('./controller/controladorAuten'))
 app.use('/home',redirectLP,getUserData,require('./controller/home'))
-
+app.use('/opcoes',redirectLP,getUserData, require('./controller/opçoes.js'))
+//CRUD
+app.use('/rss',redirectLP,getUserData,require('./controller/rssMan.js'))
 
 //pagina inicial
 app.get('/',redirectHome,(req,res)=> res.sendFile(path.join(static,'HTML','login.html')))
