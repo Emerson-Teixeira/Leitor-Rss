@@ -113,6 +113,7 @@ nav{
     position: fixed;
     padding-bottom:10px;
     border-bottom: 1px solid gainsboro ;
+    margin-bottom: 20px;
 }
 #searchBar{
     display: flex;
@@ -187,4 +188,58 @@ ul{
 }
 .dropmenu li:hover ul li:hover {
     background-color: #f18959;
+}
+#paginaCadastro{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    overflow-y: scroll;
+    z-index: 0;
+}
+
+#paginaCadastro form{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-flow: column nowrap;
+    width: 800px;
+    height: 900px;
+    border: 1px solid gray;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px black;
+    padding: 40px 40px;
+    z-index: 1;
+}
+#paginaCadastro input{
+    width: 89%;
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+#paginaCadastro form input[type = "submit"],#paginaCadastro form input[type = "button"] {
+    align-self: center;
+    background-color:#f17338;
+    height: 50px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 10px;
+ }
+#paginaCadastro form input[type = "submit"]:hover,#paginaCadastro form input[type = "button"]:hover{
+    cursor: pointer;
+    background-color: #f26627;
+ }
+label{
+    margin-bottom: -5%;
+    font-size: 2rem;
 }

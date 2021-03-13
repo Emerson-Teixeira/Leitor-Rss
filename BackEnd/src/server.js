@@ -5,16 +5,20 @@ const static = path.join(__dirname,'../',"../",'FrontEnd') // Caminho até os ar
 const handlebars = require('express-handlebars')
 const session = require('express-session')
 const User = require('./models/userModel')
-const{
-    PORT = 3000,
-    MAX_LIFETIME = 7200000,
-    SESS_NAME = 'sId',
-    SESS_SECRET = 'Eutenhosoquatroanos'
 
-} = process.env
+const PORT = 3000
+const MAX_LIFETIME = 7200000
+const SESS_NAME = 'sId'
+const SESS_SECRET = 'Eutenhosoquatroanos'
 
-app.engine('handlebars',handlebars({defaultLayout: 'main'}))
+app.engine('handlebars',handlebars({defaultLayout: 'main',runtimeOptions: {
+    allowProtoPropertiesByDefault: true,
+    allowProtoMethodsByDefault: true,
+}}))
 app.set('view engine', 'handlebars')
+app.use(express.static(path.join(static)));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(session({
     secret:SESS_SECRET,
     resave:false,
@@ -45,12 +49,11 @@ var redirectHome = (req,res,next)=>{
 }
 
 var getUserData =  (req,res,next) =>{
-    console.log(req.session.userId)
     if(!req.session.userId){
         res.redirect('/logout')
     }
     else{
-         User.findOne({'_id':`${req.session.userId}`}, 'nome rssList email', (err, user)=> {
+         User.findOne(req.session.userId, 'nome rssList email', (err, user)=> {
                 if (err){
                     res.redirect('/logout')
                 }
@@ -62,9 +65,6 @@ var getUserData =  (req,res,next) =>{
         })
     }
 }
-app.use(express.static(path.join(static)));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use('/entrar',redirectHome,require('./controller/controladorAuten'))
 app.use('/home',redirectLP,getUserData,require('./controller/home'))
 app.use('/opcoes',redirectLP,getUserData, require('./controller/opçoes.js'))

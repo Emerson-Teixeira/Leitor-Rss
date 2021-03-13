@@ -6,7 +6,7 @@ router.post('/cadastro', async (req,res) =>{
     try{
         const criado = await User.create(req.body)
         const { _id } = criado.toObject()
-        req.session.userId = _id
+        req.session.userId = {'_id':_id}
         return res.send('ok')
     }
     catch (err){
@@ -20,7 +20,7 @@ router.post('/login', async (req,res) =>{
         if(!user)
             throw err
         const { _id } = user.toObject()
-        req.session.userId = _id
+        req.session.userId = {'_id':_id}
         return res.send('ok')
     }
     catch (err){
