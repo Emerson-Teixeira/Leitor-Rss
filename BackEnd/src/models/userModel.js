@@ -21,7 +21,7 @@ const modeloUsuario = new mongoose.Schema({
     rssList:[{
         url:String,
         tags:[String],
-        nome:String,
+        nome:String
     }],
     createdAt:{
         type:Date,

@@ -27,7 +27,7 @@ const enviarDados = async (e) => {
             alert("Erro ao realizar cadastro")
         }
         else
-         redirectHome(response)
+        window.location.href = '/home'
     })
 }
 formCadastro.addEventListener('submit',enviarDados)
@@ -47,7 +47,7 @@ const verificarDados = async (e) => {
             alert("Erro ao realizar login")
         }
         else
-         redirectHome(response)
+        window.location.href = '/home'
     })
 }
 formLogin.addEventListener('submit',verificarDados)
@@ -59,13 +59,4 @@ function convertFDtoJSON(formData){
         obj[key] = formData.get(key)
     }
     return JSON.stringify(obj)
-}
-//funcao para redirecionarHome
-
-function redirectHome(response){
-    var header = new Headers({'x-access-token': response})
-    var myInit = {method: 'GET',
-    headers: header
-    }
-    window.location.href = '/home'
 }

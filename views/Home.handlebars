@@ -1,7 +1,6 @@
  <div class="container">
         <header id="topoFixo">
             <div id="logoMenu">
-                <button id='side1' class="sideBar"></button>
                 <div id="logo">J-rss Reader</div>
             </div>
             <div id="searchBar">
@@ -22,21 +21,19 @@
                 </ul>
             </div>
         </header>
-        <aside id="menulateral">
-            <div id="logoMenu" class="fixed">
-                <button id="side2" class="sideBar"></button>
-                <div id="logo">J-rss Reader</div>
-            </div>
-            <nav>
-                {{#each rssList}}
-                <a style="border: 1px solid black; color: black; margin-top: 20px; text-align: center;" href="{{this.url}}">{{this.nome}}</a>
-                {{/each}}
-            </nav>
-        </aside>
         <div id="content">
-            <article>
-                <section></section>
-            </article>
+            <div class="rssOp">
+                   <button id="createFeed">Adicionar um novo feed</button>
+            </div>
+            {{#each rssList}}
+               <div class="rssOp contentRequest" data-id="{{this._id}}">
+                   <h1 class="truncate"> Titulo: {{this.nome}}</h1>
+                   <h2 class="linkRss truncate"> Link do feed: {{this.url}}</h2>
+                   <span class="tags truncate"> <strong>Tags: </strong>{{this.tags}}</span>
+                   <button class="deleteFeed"> Excluir Feed</button>
+               </div>
+        {{/each}}
+        
         </div>
         <div id="paginaCadastro">
                 <form id="addRss" autocomplete="on">

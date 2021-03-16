@@ -76,19 +76,7 @@ header#topoFixo{
     cursor: pointer;
     opacity: 0.6;
 }
-aside#menulateral{
-    position: fixed;
-    top:0;
-    left: 0;
-    height: 100%;
-    width:271px ;
-    background-color: #f26627;
-    padding: 10px;
-    padding-top: 16px;
-    box-shadow: 5px 5px 10px black;
-    display: none;
-    overflow-y: auto;
-}
+
 #logo{
     font-size: 2rem;
     margin-left: 10px;
@@ -98,22 +86,59 @@ aside#menulateral{
 #content{
     width: 100%;
     margin-top: 80px;
+    padding: 10px;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 1080px;
 }
 
-article{
-    width: 60%;
+.rssOp{
+    width: 50%;
+    margin: 20px;
+    background: white;
+    height: 200px;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px rgb(126, 126, 126);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
 }
-nav{
-    margin-top: 60px;
+.truncate {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+.rssOp:hover{
+    background: #f26627;
+    cursor: pointer;
 }
-.fixed{
-    position: fixed;
-    padding-bottom:10px;
-    border-bottom: 1px solid gainsboro ;
-    margin-bottom: 20px;
+.tags{
+    display: block;
+}
+.deleteFeed{
+    border-radius: 12px;
+    height: 40px;
+    width: 300px;
+    align-self: center;
+}
+.deleteFeed:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#createFeed{
+    align-self: center;
+    height: 100px;
+    width: 400px;
+    border-radius: 12px;
+}
+#createFeed:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 #searchBar{
     display: flex;
@@ -200,7 +225,7 @@ ul{
     left: 0;
     z-index: 1;
     overflow: hidden;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     flex-flow: column nowrap;

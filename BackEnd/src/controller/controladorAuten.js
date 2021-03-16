@@ -7,10 +7,11 @@ router.post('/cadastro', async (req,res) =>{
         const criado = await User.create(req.body)
         const { _id } = criado.toObject()
         req.session.userId = {'_id':_id}
-        return res.send('ok')
+        return res.status(200).send('ok')
     }
     catch (err){
-        return res.status(400).send("err")
+        console.log(err)
+        return res.status(400).send(err)
     }
 })
 

@@ -1,19 +1,35 @@
-const menuLateral = document.getElementById('menulateral')
-const telaNoticia = document.getElementById('content')
-const botaoCadastroOpen = document.getElementById('side1')
-const botaoCadastroClose = document.getElementById('side2')
-botaoCadastroOpen.addEventListener('click',()=>{
-    menuLateral.style.display = 'block';
-});
-botaoCadastroClose.addEventListener('click',()=>{
-    menuLateral.style.display = 'none';
-});
-
+const createFeed = document.getElementById('createFeed')
+createFeed.addEventListener('click',()=>{
+    document.getElementById('paginaCadastro').style.display = 'flex';
+})
 const closeFeed = document.getElementById('closeFeed')
 closeFeed.addEventListener('click',()=>{
     document.getElementById('paginaCadastro').style.display = 'none';
 });
 const addRss = document.getElementById("addRss")
+function criarElemento(formJson){
+    var h1 = document.createElement('h1')
+    h1.setAttribute('class','truncate')
+    var h2 = document.createElement('h2')
+    h2.setAttribute('class','linkRss truncate')
+    var span = document.createElement('span')
+    span.setAttribute('class','tags truncate')
+    var button = document.createElement('button')
+    button.setAttribute('class','deleteFeed')
+    h1.appendChild(document.createTextNode(`Titulo: ${formJson.nome}`))
+    h2.appendChild(document.createTextNode(`Link do feed: ${formJson.url}`))
+    span.innerHTML = `<strong>Tags: </strong> ${formJson.tags}`
+    button.appendChild(document.createTextNode(`Excluir Feed`))
+    var div = document.createElement('div')
+    div.appendChild(h1)
+    div.appendChild(h2)
+    div.appendChild(span)
+    div.appendChild(button)
+    div.setAttribute('class','rssOp contentRequest')
+    div.setAttribute('data-id',formJson._id)
+    div.addEventListener('click',fazerRequisicao)
+    document.getElementById("content").appendChild(div)
+}
 const enviarDados = async (e) => {
     e.preventDefault();
     var formJson =  convertFDtoJSON(new FormData(addRss))
@@ -23,12 +39,15 @@ const enviarDados = async (e) => {
     headers: header,
     body: formJson}
 
-    fetch('/rss/add',myInit).then((response) =>{
+    fetch('/rss/add',myInit).then(async(response) =>{
         if(!response.ok){
             alert("Erro ao realizar cadastro")
         }
-        else
+        else{
+            var jsonCria = await response.json().then(jso => jso)
+            criarElemento(jsonCria)
             alert('Feed adicionado com sucesso')
+        }
     })
  }
 addRss.addEventListener('submit',enviarDados)
@@ -36,10 +55,40 @@ function convertFDtoJSON(formData){
 var obj = {}
 for(let key of formData.keys()){
 if (key == 'tags'){
-    obj[key] = formData.get(key).split(',')
+    var allTags = formData.get(key).replace(/ /g,'').split(',')
+    obj[key] = allTags.filter((keyTemp,index)=>{
+        return allTags.indexOf(keyTemp) === index
+    })
     continue
 }
 obj[key] = formData.get(key)
 }
 return JSON.stringify(obj)
 }
+var fazerRequisicao = (e) => {
+    e.preventDefault()
+    var obj = e.target
+    if(obj.tagName != 'DIV'){
+        id = obj.parentElement.getAttribute("data-id")
+        if(obj.tagName == 'BUTTON'){
+            fetch(`/rss/remove/${id}`,{method: "DELETE"}).then((response) =>{
+                if(!response.ok){
+                    alert("Erro ao remover Feed")
+                }
+                else
+                    obj.parentElement.remove()
+            })
+        }
+        else{
+            //window.location.href = `/feed/${id}`
+        }
+    }
+    else{
+         id = obj.getAttribute("data-id")
+         //window.location.href = `/feed/${id}`
+    }
+    
+}
+document.querySelectorAll('.contentRequest').forEach( (item)=>{
+    item.addEventListener('click',fazerRequisicao)
+})
