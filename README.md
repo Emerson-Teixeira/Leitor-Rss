@@ -6,7 +6,9 @@
 - [x] Estrutura Front-End
 - [x] Estrutura de rotas 
 - [x] Sessão e autenticação
-- [ ] CRUD
-- [ ] Verificação em duas etapas (email)
+- [x] CRUD 
+- [x] Verificação em duas etapas (email)
+- [ ] Fetch Rss
+- [ ] Pesquisa por tags
 - [ ] API Auth google
 - [ ] ... 
