@@ -70,6 +70,7 @@ app.use('/entrar',redirectHome,require('./controller/controladorAuten'))
 app.use('/home',redirectLP,getUserData,require('./controller/home'))
 app.use('/opcoes',redirectLP,getUserData, require('./controller/opçoes.js'))
 app.use('/rss',redirectLP,getUserData,require('./controller/rssMan.js'))
+app.use('/send',require('./controller/email.js'))
 
 //pagina inicial
 app.get('/',redirectHome,(req,res)=> res.sendFile(path.join(static,'HTML','login.html')))

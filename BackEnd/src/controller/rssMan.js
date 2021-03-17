@@ -18,7 +18,7 @@ router.post('/add',async (req,res)=>{
     
 })
 router.delete('/remove/:id',async (req,res)=>{
-    User.updateOne(req.session.userId,{$pull: {rssList: {_id:req.params.id}}}, async (err,obj)=>{
+   await User.updateOne(req.session.userId,{$pull: {rssList: {_id:req.params.id}}},(err,obj)=>{
         if (err) {
             res.status(500).json({message: 'Error'})
         }
@@ -27,7 +27,7 @@ router.delete('/remove/:id',async (req,res)=>{
         }
     })
 })
-router.put('/update',(req,res)=>{
+router.put('/update/:id',(req,res)=>{
     
 })
 router.get('/getNews',(req,res)=>{

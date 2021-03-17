@@ -1,34 +1,79 @@
 const express = require('express')
 const User = require('../models/userModel')
+const fetch = require('node-fetch')
 const router = express.Router();
+var response = {
+    message: '',
+    error: false,
+    errorLog:''
+}
 
 router.post('/cadastro', async (req,res) =>{
+    setJsonResponseClear()
     try{
         const criado = await User.create(req.body)
-        const { _id } = criado.toObject()
-        req.session.userId = {'_id':_id}
-        return res.status(200).send('ok')
+        const { _id, email } = criado.toObject()
+        response.message = 'Cadastro realizado com sucesso'
+        const urlSend = `http://localhost:3000/send/${_id}/${email}`
+        fetch(urlSend,{method: 'GET'})
+        return res.status(200).json(response)
     }
     catch (err){
-        console.log(err)
-        return res.status(400).send(err)
+        response.message = 'Erro ao realizar cadastro'
+        response.error = true,
+        response.errorLog = err
+        return res.status(400).json(response)
     }
 })
 
 router.post('/login', async (req,res) =>{
+    setJsonResponseClear()
     try{
         const user = await User.findOne(req.body)
-        if(!user)
-            throw err
+        if((!user))
+            throw (err = 1) 
+        if (!user.validacaoEmail)
+            throw (err = 2)     
         const { _id } = user.toObject()
         req.session.userId = {'_id':_id}
-        return res.send('ok')
+        response.message = "Login realizado com sucesso"
+        return res.json(response)
     }
     catch (err){
-        return res.status(401).send("err")
+        if (err == 1 ){
+            res.status(401).json({message: 'Usuario Não encontrado' })
+        }
+        
+        if (err == 2 ){
+            res.status(401).json({message: 'É necessario realizar a validaçao no email'})
+        }
+            
     }
 })
 
+router.get('/validate/:id',(req,res)=>{
+    setJsonResponseClear()
+    User.updateOne({'_id':req.params.id},{validacaoEmail: true}, async (err,obj)=>{
+        if(err){
+            response.message = 'Não foi possivel realizar a validaçao'
+            response.error = true
+            response.errorLog = err
+            console.log(err)
+            res.status(404).json(response)
+        }
+        else{
+            req.session.userId = req.params.id
+            res.redirect("/home")
+        }
+    })
+})
+
 router.get('*',(req,res)=>res.status(404).send('what???'))
+
+function setJsonResponseClear(){
+    response.message = ""
+    response.errorLog = ""
+    response.error = false
+}
 
 module.exports = router

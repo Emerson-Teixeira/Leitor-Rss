@@ -6,6 +6,10 @@ const modeloUsuario = new mongoose.Schema({
         type: String,
         require: true,
     },
+    validacaoEmail:{
+        type:Boolean,
+        default: false 
+    },
     email:{
         type: String,
         require: true,
