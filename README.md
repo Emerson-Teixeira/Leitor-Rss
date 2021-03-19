@@ -15,3 +15,4 @@
 - [ ] Alterar senha e nome(RSS/User)
 - [ ] Opçao de gerenciar feed na pagina de leitura
 - [ ] Docker
+- [ ] ...
