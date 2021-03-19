@@ -1,7 +1,7 @@
 const express = require('express');
-const session = require('express-session');
 const User = require('../models/userModel')
 const router = express.Router();
+const fetch = require('node-fetch')
 
 router.post('/add',async (req,res)=>{
     if(await validationNotEqual(req.session.userId,req.body.url)==0){
@@ -30,9 +30,22 @@ router.delete('/remove/:id',async (req,res)=>{
 router.put('/update/:id',(req,res)=>{
     
 })
-router.get('/getNews',(req,res)=>{
-        //logicadepegarconteudo
-        res.send(xmlresponse)
+
+router.get('/get/:id', async(req,res)=>{
+    console.log("get")
+    var rss  
+    await User.findOne(req.session.userId, 'rssList', (err, user)=> {
+        if(!err){
+            var dados = user.rssList.toObject()
+            dados.forEach(element => {
+                if(element._id == req.params.id){
+                    rss = element
+                }
+            });
+        }
+    })
+      var xmlDocument = await fetch(rss.url,{method:'get'}).then(resp => resp.text()).then(txt => txt).catch(console.error)
+      res.status(200).send(xmlDocument)
 })
 
 async function returnNewRss(id,url){

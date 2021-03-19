@@ -13,7 +13,7 @@ router.post('/cadastro', async (req,res) =>{
     try{
         const criado = await User.create(req.body)
         const { _id, email } = criado.toObject()
-        response.message = 'Cadastro realizado com sucesso'
+        response.message = 'Cadastro realizado com sucesso, verifique seu email para realizar o login'
         const urlSend = `http://localhost:3000/send/${_id}/${email}`
         fetch(urlSend,{method: 'GET'})
         return res.status(200).json(response)
@@ -47,13 +47,13 @@ router.post('/login', async (req,res) =>{
         if (err == 2 ){
             res.status(401).json({message: 'É necessario realizar a validaçao no email'})
         }
-            
+        
     }
 })
 
-router.get('/validate/:id',(req,res)=>{
+router.get('/validate/:id',async (req,res)=>{
     setJsonResponseClear()
-    User.updateOne({'_id':req.params.id},{validacaoEmail: true}, async (err,obj)=>{
+    await User.updateOne({'_id':req.params.id},{validacaoEmail: true},(err,obj)=>{
         if(err){
             response.message = 'Não foi possivel realizar a validaçao'
             response.error = true
@@ -61,11 +61,8 @@ router.get('/validate/:id',(req,res)=>{
             console.log(err)
             res.status(404).json(response)
         }
-        else{
-            req.session.userId = req.params.id
-            res.redirect("/home")
-        }
     })
+    res.redirect("/home")
 })
 
 router.get('*',(req,res)=>res.status(404).send('what???'))

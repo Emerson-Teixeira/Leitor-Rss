@@ -74,8 +74,8 @@ app.use('/send',require('./controller/email.js'))
 
 //pagina inicial
 app.get('/',redirectHome,(req,res)=> res.sendFile(path.join(static,'HTML','login.html')))
-app.get('/feed/:id',async (req,res)=>{
-    res.json(req.params.id)
+app.get('/feed/:id',getUserData,async (req,res)=>{
+    res.render('feed',res.locals.user)
 })
 app.get('/logout',(req,res)=> {
     req.session.destroy(err => {

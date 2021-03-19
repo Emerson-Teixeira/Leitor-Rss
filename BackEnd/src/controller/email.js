@@ -1,12 +1,26 @@
 const express = require('express')
 const router = express.Router();
+const User = require('../models/userModel')
 const nodemailer = require('nodemailer')
 
 router.get('/:id/:email',async (req,res)=>{
-    var status = await main(req.params.id,req.params.email)
-    res.json({message: status})
+    existInDatabase(req.params.id,req.params.email) 
+    if (await existInDatabase(req.params.id,req.params.email) == true){
+        var status = await main(req.params.id,req.params.email)
+        res.json({message: status})
+    }
+    else{
+        res.json({message: "Cannot send an Email, account not found"})
+    }
 })
 
+async function existInDatabase(id,email){
+    var boolean = false
+    var emailUser = await User.findOne({'_id':id}, 'email').then( user => { if (user) return user.email; else  return null}).catch(err => console.log(err))
+    if (email == emailUser)
+        boolean = true
+    return boolean
+}
 async function main(id,email){
     let emailPath = `http://localhost:3000/entrar/validate/${id}`
     let transporter = nodemailer.createTransport({

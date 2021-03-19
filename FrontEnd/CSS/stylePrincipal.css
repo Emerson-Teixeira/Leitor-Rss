@@ -60,6 +60,7 @@ header#topoFixo{
     flex-shrink: 0;
     flex-flow: row nowrap;
     box-shadow: 5px 5px 10px rgb(126, 126, 126);
+    z-index: 9999;
 }
 #logoMenu{
     display: flex ;
@@ -267,4 +268,149 @@ ul{
 label{
     margin-bottom: -5%;
     font-size: 2rem;
+}
+aside#menulateral{
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100%;
+    width:271px ;
+    background-color: #f26627;
+    padding: 10px;
+    padding-top: 16px;
+    box-shadow: 5px 5px 10px black;
+    display: none;
+    overflow-y: auto;
+    z-index: 10000;
+}
+.fixed{
+    position: fixed;
+    padding-bottom:10px;
+    border-bottom: 1px solid gainsboro ;
+    margin-bottom: 20px;
+}
+nav{
+    margin-top: 70px;
+}
+#sideContent{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.itemSide{
+    width: 230px;
+    height: 50px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:10px ;
+    border-radius: 12px;
+}
+.itemSide:hover{
+    background-color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    text-decoration: underline;
+}
+.nameSide{
+   font-size: 1.5rem;
+   text-align: center;
+}
+.news{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    background-color: white;
+    padding:  0 30px;
+    margin: 20px;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 5px 5px 10px rgb(126, 126, 126);
+}
+.news a {
+    font-size: 1.2rem;
+    text-decoration: none;
+   display: inline !important;
+   padding: none !important;
+   margin: none !important;
+   line-height: auto;
+   padding: initial;
+   color: #f18959 ;
+   height: auto;
+   margin-top: 10px;
+}
+a.tituloNoticia {
+    font-size: 2.0rem;
+    text-decoration: underline;
+    color: #f18959;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.news  p a {
+    font-size: 1.2rem;
+    text-decoration: none;
+   display: inline !important;
+   padding: none !important;
+   margin: none !important;
+   line-height: auto;
+   padding: initial;
+   color: #f18959 ;
+   height: auto;
+   margin-top: 10px;
+}
+.news img{
+    max-width: 600px;
+    max-height: 600px;
+    width: auto !important;
+    height: auto !important;
+    margin: 10px auto !important;
+ }
+ .textFormat {
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-align: justify;
+    word-spacing: 1.5px !important;
+    line-height: 30px !important;
+    letter-spacing: 0.4px !important;
+    padding:  0 100px;
+ }
+
+.textFormat *{
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 10px;
+ }
+
+ .textFormat  p a {
+     font-size: 1.2rem;
+     text-decoration: none;
+    display: inline !important;
+    padding: none !important;
+    margin: none !important;
+    line-height: auto;
+    padding: initial;
+    color: #f18959 ;
+    height: auto;
+ }
+
+ .textFormat  p span {
+    font-size: 1.2rem !important;
+    margin-top: 10px;
+    
+}
+.news  p span {
+    font-size: 1.2rem !important;
+    margin-top: 10px;
+    
+}
+.news span {
+    font-size: 1.2rem !important;
+    margin: 10px 0;
+    
+}
+.news li{
+    margin-left: 30px;
 }

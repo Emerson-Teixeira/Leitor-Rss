@@ -80,12 +80,12 @@ var fazerRequisicao = (e) => {
             })
         }
         else{
-            //window.location.href = `/feed/${id}`
+            window.location.href = `/feed/${id}`
         }
     }
     else{
          id = obj.getAttribute("data-id")
-         //window.location.href = `/feed/${id}`
+         window.location.href = `/feed/${id}`
     }
     
 }

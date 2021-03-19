@@ -22,12 +22,13 @@ const enviarDados = async (e) => {
     headers: header,
     body: formJson}
 
-    fetch('/entrar/cadastro',myInit).then((response) =>{
-        if(!response.ok){
-            alert("Erro ao realizar cadastro")
+    fetch('/entrar/cadastro',myInit).then(async (response) =>{
+        var msg =  await response.json().then(jsn => jsn)
+        alert(msg.message)
+        if(response.ok){
+            cadastro.style.display = 'none';
+            document.body.style.overflow = 'initial'
         }
-        else
-        window.location.href = '/home'
     })
 }
 formCadastro.addEventListener('submit',enviarDados)
@@ -42,9 +43,10 @@ const verificarDados = async (e) => {
     headers: header,
     body: formJson}
 
-    fetch('/entrar/login',myInit).then((response) =>{
+    fetch('/entrar/login',myInit).then(async (response) =>{
         if(!response.ok){
-            alert("Erro ao realizar login")
+            var msg =  await response.json().then(jsn => jsn)
+            alert(msg.message)
         }
         else
         window.location.href = '/home'

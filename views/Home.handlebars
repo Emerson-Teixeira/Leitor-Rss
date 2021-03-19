@@ -26,13 +26,13 @@
                    <button id="createFeed">Adicionar um novo feed</button>
             </div>
             {{#each rssList}}
-               <div class="rssOp contentRequest" data-id="{{this._id}}">
-                   <h1 class="truncate"> Titulo: {{this.nome}}</h1>
-                   <h2 class="linkRss truncate"> Link do feed: {{this.url}}</h2>
-                   <span class="tags truncate"> <strong>Tags: </strong>{{this.tags}}</span>
-                   <button class="deleteFeed"> Excluir Feed</button>
-               </div>
-        {{/each}}
+                <div class="rssOp contentRequest" data-id="{{this._id}}">
+                    <h1 class="truncate"> Titulo: {{this.nome}}</h1>
+                    <h2 class="linkRss truncate"> Link do feed: {{this.url}}</h2>
+                    <span class="tags truncate"> <strong>Tags: </strong>{{this.tags}}</span>
+                    <button class="deleteFeed"> Excluir Feed</button>
+                </div>
+            {{/each}}
         
         </div>
         <div id="paginaCadastro">
