@@ -2,6 +2,9 @@ const express = require('express');
 const User = require('../models/userModel')
 const router = express.Router();
 const fetch = require('node-fetch')
+const buffer = require('buffer')
+const iconv = require('iconv-lite')
+const chardet = require('chardet')
 
 router.post('/add',async (req,res)=>{
     if(await validationNotEqual(req.session.userId,req.body.url)==0){
@@ -32,7 +35,6 @@ router.put('/update/:id',(req,res)=>{
 })
 
 router.get('/get/:id', async(req,res)=>{
-    console.log("get")
     var rss  
     await User.findOne(req.session.userId, 'rssList', (err, user)=> {
         if(!err){
@@ -44,7 +46,12 @@ router.get('/get/:id', async(req,res)=>{
             });
         }
     })
-      var xmlDocument = await fetch(rss.url,{method:'get'}).then(resp => resp.text()).then(txt => txt).catch(console.error)
+      var xmlDocument = await fetch(rss.url,{method:'get'}).then(resp => resp.arrayBuffer())
+      .then(arrayB => {
+          //descobrir o encoding
+          var encoding = chardet.detect(Buffer.from(arrayB))
+          // convertendo buffer codificado para string
+          return iconv.decode(Buffer.from(arrayB),encoding)})
       res.status(200).send(xmlDocument)
 })
 

@@ -1,3 +1,4 @@
+
 const createFeed = document.getElementById('createFeed')
 createFeed.addEventListener('click',()=>{
     document.getElementById('paginaCadastro').style.display = 'flex';
@@ -56,8 +57,9 @@ var obj = {}
 for(let key of formData.keys()){
 if (key == 'tags'){
     var allTags = formData.get(key).replace(/ /g,'').split(',')
-    obj[key] = allTags.filter((keyTemp,index)=>{
-        return allTags.indexOf(keyTemp) === index
+    var allTagsMin = allTags.map( p => p.toLowerCase())
+    obj[key] = allTagsMin.filter((keyTemp,index)=>{
+        return allTagsMin.indexOf(keyTemp) === index
     })
     continue
 }
@@ -92,3 +94,4 @@ var fazerRequisicao = (e) => {
 document.querySelectorAll('.contentRequest').forEach( (item)=>{
     item.addEventListener('click',fazerRequisicao)
 })
+document.title = "Jrss Reader | Home"

@@ -43,13 +43,21 @@ var loadFeed =  async() => {
             alert('Nao foi possivel obter o feed')
         }
         else{
-            return resp.text().then(txt => txt)
+            return (resp.text().then(txt => txt))
         }
-    } )
+    })
     var parser = new DOMParser();
-    var xmlFeed = await parser.parseFromString(feed,'application/xml')
+    var xmlFeed = parser.parseFromString(feed,'application/xml')
+
     var array = xmlFeed.getElementsByTagName('item')
-   Array.from(array).forEach(element => construirNoticia(element))
+    document.title = 'Jrss Reader | ' + xmlFeed.getElementsByTagName('title')[0].childNodes[0].nodeValue
+    if (array.length == 0){
+        alert('Não foi possivel carregar o feed, verifique o link cadastrado ou tente novamente')
+    }
+    else{
+        Array.from(array).forEach(element => construirNoticia(element))
+    }
+   
 }
 function construirNoticia(element){
     var article = document.createElement('article')
@@ -61,14 +69,13 @@ function construirNoticia(element){
     text.setAttribute('class','textFormat')
     titleArticle.setAttribute('class','truncate tituloNoticia')
 
-
+    var decoded = new TextDecoder('utf-8')
     dataPublish.innerHTML = (element.getElementsByTagName("pubDate").length != 0 ?(element.getElementsByTagName("pubDate")[0].childNodes[0].nodeValue):null)
     text.innerHTML = (element.getElementsByTagName("content:encoded").length != 0 ?(element.getElementsByTagName("content:encoded")[0].childNodes[0].nodeValue):null)
     titleArticle.innerHTML = (element.getElementsByTagName("title").length != 0 ? (element.getElementsByTagName("title")[0].childNodes[0].nodeValue):null)
     creator.innerHTML = (element.getElementsByTagName("dc:creator").length != 0 ? ("Escrito por: "  +element.getElementsByTagName("dc:creator")[0].childNodes[0].nodeValue):null)
     titleArticle.href =  (element.getElementsByTagName("link").length != 0?(element.getElementsByTagName("link")[0].childNodes[0].nodeValue):null)
-   description.innerHTML = (element.getElementsByTagName("description").length != 0?(element.getElementsByTagName("description")[0].childNodes[0].nodeValue):null)
-   
+    description.innerHTML = (element.getElementsByTagName("description").length != 0?(element.getElementsByTagName("description")[0].childNodes[0].nodeValue):null)
     article.appendChild(titleArticle)
     article.appendChild(creator)
     if (!text.innerHTML){

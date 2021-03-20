@@ -71,11 +71,13 @@ app.use('/home',redirectLP,getUserData,require('./controller/home'))
 app.use('/opcoes',redirectLP,getUserData, require('./controller/opçoes.js'))
 app.use('/rss',redirectLP,getUserData,require('./controller/rssMan.js'))
 app.use('/send',require('./controller/email.js'))
+app.use('/search',redirectLP,getUserData,require('./controller/search.js'))
+
 
 //pagina inicial
 app.get('/',redirectHome,(req,res)=> res.sendFile(path.join(static,'HTML','login.html')))
-app.get('/feed/:id',getUserData,async (req,res)=>{
-    res.render('feed',res.locals.user)
+app.get('/feed/:id',redirectLP,getUserData,async (req,res)=>{
+    res.render('Feed',res.locals.user)
 })
 app.get('/logout',(req,res)=> {
     req.session.destroy(err => {

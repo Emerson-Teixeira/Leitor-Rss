@@ -108,6 +108,21 @@ header#topoFixo{
     justify-content: space-evenly;
     align-items: flex-start;
 }
+.rssOpNull{
+    width: 50%;
+    margin: 20px;
+    background: white;
+    height: 200px;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px rgb(126, 126, 126);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    justify-self: center;
+    align-self: center;
+}
 .truncate {
     width: 100%;
     white-space: nowrap;
@@ -376,6 +391,7 @@ a.tituloNoticia {
     line-height: 30px !important;
     letter-spacing: 0.4px !important;
     padding:  0 100px;
+    max-width: 100%;
  }
 
 .textFormat *{
@@ -413,4 +429,12 @@ a.tituloNoticia {
 }
 .news li{
     margin-left: 30px;
+}
+figure{
+    max-width: 100%;
+    margin: 0 auto;
+}
+a:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }

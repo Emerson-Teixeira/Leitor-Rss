@@ -36,9 +36,9 @@ async function main(id,email){
         subject: "Validaçao da conta",
         text: `Clique no link para validar sua conta ${emailPath}`,
         replyTo: 'emejunior99@gmail.com',
-        html: ` <h1>Bem vindo ao Jrss Reader</h1>
-                <hr><br><br>
-                <h2></h2><a href = ${emailPath}>clique aqui</a> para validar sua conta</h2>`
+        html: ` <h1>Bem vindo ao J-rss Reader</h1>
+                <hr><br>
+                <h2><a href = ${emailPath}>clique aqui</a> para validar sua conta</h2>`
     }).then(resp=>resp).catch(err => err) 
 
     return status
