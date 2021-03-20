@@ -9,7 +9,7 @@
 - [x] CRUD 
 - [x] Verificação em duas etapas (email)
 - [x] Fetch Rss
-- [ ] Pesquisa por tags
+- [x] Pesquisa por tags
 - [ ] API Auth google/Facebook
 - [ ] Layout pag config
 - [ ] Alterar senha e nome(RSS/User)
