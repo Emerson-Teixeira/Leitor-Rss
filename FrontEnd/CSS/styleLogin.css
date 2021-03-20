@@ -153,8 +153,6 @@ form input{
     justify-content: center;
     align-items: center;
     flex-flow: column nowrap;
-    overflow-y: scroll;
-    z-index: 0;
 }
 
 #paginaCadastro form{

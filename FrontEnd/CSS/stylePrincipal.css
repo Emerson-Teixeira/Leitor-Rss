@@ -241,13 +241,12 @@ ul{
     bottom: 0;
     left: 0;
     z-index: 1;
-    overflow: hidden;
     display: none;
     justify-content: center;
     align-items: center;
     flex-flow: column nowrap;
-    overflow-y: scroll;
-    z-index: 0;
+    z-index: 20000;
+    overflow-y: hidden;
 }
 
 #paginaCadastro form{

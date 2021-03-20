@@ -2,10 +2,12 @@
 const createFeed = document.getElementById('createFeed')
 createFeed.addEventListener('click',()=>{
     document.getElementById('paginaCadastro').style.display = 'flex';
+    document.body.style.overflow = 'hidden'
 })
 const closeFeed = document.getElementById('closeFeed')
 closeFeed.addEventListener('click',()=>{
     document.getElementById('paginaCadastro').style.display = 'none';
+    document.body.style.overflow = 'initial'
 });
 const addRss = document.getElementById("addRss")
 function criarElemento(formJson){
