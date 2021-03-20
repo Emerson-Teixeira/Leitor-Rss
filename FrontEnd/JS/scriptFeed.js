@@ -48,13 +48,12 @@ var loadFeed =  async() => {
     })
     var parser = new DOMParser();
     var xmlFeed = parser.parseFromString(feed,'application/xml')
-
     var array = xmlFeed.getElementsByTagName('item')
-    document.title = 'Jrss Reader | ' + xmlFeed.getElementsByTagName('title')[0].childNodes[0].nodeValue
     if (array.length == 0){
         alert('Não foi possivel carregar o feed, verifique o link cadastrado ou tente novamente')
     }
     else{
+        document.title = 'Jrss Reader | ' + xmlFeed.getElementsByTagName('title')[0].childNodes[0].nodeValue
         Array.from(array).forEach(element => construirNoticia(element))
     }
    
@@ -88,3 +87,9 @@ function construirNoticia(element){
 }
 
 document.body.onload = loadFeed
+const select = document.getElementById('selectSearch')
+const formSearch = document.getElementById('searchForm')
+
+select.addEventListener('change',(e)=>{
+        formSearch.setAttribute('action',`/search/${select.value}`)
+})

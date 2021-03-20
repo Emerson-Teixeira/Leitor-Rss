@@ -95,3 +95,10 @@ document.querySelectorAll('.contentRequest').forEach( (item)=>{
     item.addEventListener('click',fazerRequisicao)
 })
 document.title = "Jrss Reader | Home"
+
+const select = document.getElementById('selectSearch')
+const formSearch = document.getElementById('searchForm')
+
+select.addEventListener('change',(e)=>{
+        formSearch.setAttribute('action',`/search/${select.value}`)
+})

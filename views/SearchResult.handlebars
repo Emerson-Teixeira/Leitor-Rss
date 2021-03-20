@@ -3,8 +3,12 @@
             <div id="logoMenu">
                 <div id="logo">J-rss Reader</div>
             </div>
-            <div id="searchBar">
-                <form action="/search/tags" method="GET" autocomplete="off">
+             <div id="searchBar">
+                <select name="select" id="selectSearch">
+                        <option value="tags">Tags</option>
+                        <option value="nome">Nome</option>
+                    </select>
+                <form action="/search/tags" method="GET" autocomplete="off" id="searchForm" >
                     <input type="text" name="q" id="" placeholder="Procure seus feeds por tags">
                     <input type="submit" value="">
                 </form>

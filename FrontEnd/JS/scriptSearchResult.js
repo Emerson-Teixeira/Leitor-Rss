@@ -28,3 +28,9 @@ document.querySelectorAll('.contentRequest').forEach( (item)=>{
 })
 
 document.title = "Jrss Reader | Search"
+const select = document.getElementById('selectSearch')
+const formSearch = document.getElementById('searchForm')
+
+select.addEventListener('change',(e)=>{
+        formSearch.setAttribute('action',`/search/${select.value}`)
+})
