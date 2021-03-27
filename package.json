@@ -4,7 +4,7 @@
   "description": "Trabalho prog web 2020.2",
   "main": "index.js",
   "scripts": {
-    "test": "node ./BackEnd/src/server.js",
+    "start": "node ./BackEnd/src/server.js",
     "dev": "nodemon ./BackEnd/src/server.js"
   },
   "repository": {
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "chardet": "^1.3.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",

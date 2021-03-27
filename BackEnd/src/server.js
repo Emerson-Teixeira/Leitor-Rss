@@ -5,10 +5,10 @@ const static = path.join(__dirname,'../',"../",'FrontEnd') // Caminho até os ar
 const handlebars = require('express-handlebars')
 const session = require('express-session')
 const User = require('./models/userModel')
-const fetch = require('node-fetch')
+const cors = require('cors')
 
 const PORT = 3000
-const MAX_LIFETIME = 7200000
+const MAX_LIFETIME = 3600000
 const SESS_NAME = 'sId'
 const SESS_SECRET = 'Eutenhosoquatroanos'
 
@@ -17,6 +17,7 @@ app.engine('handlebars',handlebars({defaultLayout: 'main',runtimeOptions: {
     allowProtoMethodsByDefault: true,
 }}))
 app.set('view engine', 'handlebars')
+app.use(cors())
 app.use(express.static(path.join(static)));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
