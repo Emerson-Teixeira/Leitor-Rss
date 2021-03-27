@@ -9,7 +9,7 @@ router.get('/nome',(req,res)=>{
         type: 'o nome: ',
         procura: req.query.q
     }
-    res.render('searchResult',searchResult)
+    res.render('SearchResult',searchResult)
 })
 
 router.get('/tags',(req,res)=>{
@@ -20,7 +20,7 @@ router.get('/tags',(req,res)=>{
         type: 'a tag: ',
         procura: req.query.q,
     }
-    res.render('searchResult',searchResult)
+    res.render('SearchResult',searchResult)
 })
 
 function searchByName(searchParams,rssList){
