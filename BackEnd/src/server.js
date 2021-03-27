@@ -6,12 +6,13 @@ const handlebars = require('express-handlebars')
 const session = require('express-session')
 const User = require('./models/userModel')
 const cors = require('cors')
+require('dotenv').config()
 
-const PORT = 3000
-const MAX_LIFETIME = 3600000
-const SESS_NAME = 'sId'
-const SESS_SECRET = 'Eutenhosoquatroanos'
 
+    PORT = 3000,
+    MAX_LIFETIME = 3600000,
+    SESS_NAME = 'sId',
+    SESS_SECRET = 'Eutenhosoquatroanos'
 app.engine('handlebars',handlebars({defaultLayout: 'main',runtimeOptions: {
     allowProtoPropertiesByDefault: true,
     allowProtoMethodsByDefault: true,
