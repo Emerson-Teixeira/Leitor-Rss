@@ -1,0 +1,47 @@
+<div class="container">
+        <header id="topoFixo">
+            <div id="logoMenu">
+                <button id='side1' class="sideBar"></button>
+                <div id="logo">J-rss Reader</div>
+            </div>
+            <div id="searchBar">
+                <select name="select" id="selectSearch">
+                        <option value="tags">Tags</option>
+                        <option value="nome">Nome</option>
+                    </select>
+                <form action="/search/tags" method="GET" autocomplete="off" id="searchForm" >
+                    <input type="text" name="q" id="" placeholder="Procure seus feeds por tags">
+                    <input type="submit" value="">
+                </form>
+            </div>
+            <div id="privateInfo">
+                <ul class="dropmenu">    
+                    <li>
+                        <a href="../home" id="nome" class="truncate">Olá, {{nome}}</a>
+                        <ul>
+                            <li> <a href="/opcoes">Configurações</a> </li>
+                            <li>   <a href="/logout">Sair</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <aside id="menulateral">
+            <div id="logoMenu" class="fixed">
+                <button id="side2" class="sideBar"></button>
+                <div id="logo">J-rss Reader</div>               
+            </div>
+            <nav>
+                <div id="sideContent">
+                    {{#each rssList}}
+                        <div class="itemSide contentRequest" data-id="{{this._id}}">
+                            <h1 class="truncate nameSide"> {{this.nome}}</h1>
+                        </div>
+                     {{/each}}
+                </div>
+            </nav>
+        </aside>
+        <div id="content">
+        </div>
+    </div>
+    <script src="../JS/scriptFeed.js"></script>
