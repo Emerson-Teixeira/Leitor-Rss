@@ -15,7 +15,7 @@ router.post('/cadastro', async (req,res) =>{
         const criado = await User.create(req.body)
         const { _id, email } = criado.toObject()
         response.message = 'Cadastro realizado com sucesso, verifique seu email para realizar o login'
-        const urlSend = `${process.env.APP_URL}/send/${_id}/${email}`
+        const urlSend = `${process.env.APP_URL}send/${_id}/${email}`
         fetch(urlSend,{method: 'GET'})
         return res.status(200).json(response)
     }
