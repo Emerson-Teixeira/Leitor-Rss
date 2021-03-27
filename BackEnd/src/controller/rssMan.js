@@ -2,13 +2,18 @@ const express = require('express');
 const User = require('../models/userModel')
 const router = express.Router();
 const fetch = require('node-fetch')
-const buffer = require('buffer')
 const iconv = require('iconv-lite')
-const chardet = require('chardet')
+const chardet = require('chardet');
+const { DOMParser } = require('xmldom')
 
 router.post('/add',async (req,res)=>{
     if(await validationNotEqual(req.session.userId,req.body.url)==0){
-        User.updateOne(req.session.userId,{$push: {rssList:req.body}}, async (err,obj)=>{
+        var newFeed = {
+            url: req.body.url,
+            tags: req.body.tags,
+            nome: await getNameFeed(req.body.url)
+        }
+        User.updateOne(req.session.userId,{$push: {rssList:newFeed}}, async (err,obj)=>{
             if (err) {
                 res.status(500).json({message: err})
             }
@@ -30,8 +35,9 @@ router.delete('/remove/:id',async (req,res)=>{
         }
     })
 })
+
 router.put('/update/:id',(req,res)=>{
-    
+    //sem funçao ainda
 })
 
 router.get('/get/:id', async(req,res)=>{
@@ -46,13 +52,7 @@ router.get('/get/:id', async(req,res)=>{
             });
         }
     })
-      var xmlDocument = await fetch(rss.url,{method:'get'}).then(resp => resp.arrayBuffer())
-      .then(arrayB => {
-          //descobrir o encoding
-          var encoding = chardet.detect(Buffer.from(arrayB))
-          // convertendo buffer codificado para string
-          return iconv.decode(Buffer.from(arrayB),encoding)})
-      res.status(200).send(xmlDocument)
+      res.status(200).send(await getFeedAsTxt(rss.url))
 })
 
 async function returnNewRss(id,url){
@@ -83,6 +83,24 @@ async function returnNewRss(id,url){
         }
     })
     return verif
+}
+
+async function getFeedAsTxt(url){
+    var xmlDocument = await fetch(url,{method:'get'}).then(resp => resp.arrayBuffer())
+      .then(arrayB => {
+          //descobrir o encoding
+          var encoding = chardet.detect(Buffer.from(arrayB))
+          // convertendo buffer codificado para string
+          return iconv.decode(Buffer.from(arrayB),encoding)
+        })
+    return xmlDocument
+}
+
+async function getNameFeed(url){
+    feed = await getFeedAsTxt(url);
+    feedAsXML = new DOMParser().parseFromString(feed,'application/xml')
+    return feedAsXML.getElementsByTagName("title")[0].childNodes[0].nodeValue
+
 }
 
 module.exports = router

@@ -67,8 +67,6 @@ function construirNoticia(element){
     var description = document.createElement('div')
     text.setAttribute('class','textFormat')
     titleArticle.setAttribute('class','truncate tituloNoticia')
-
-    var decoded = new TextDecoder('utf-8')
     dataPublish.innerHTML = (element.getElementsByTagName("pubDate").length != 0 ?(element.getElementsByTagName("pubDate")[0].childNodes[0].nodeValue):null)
     text.innerHTML = (element.getElementsByTagName("content:encoded").length != 0 ?(element.getElementsByTagName("content:encoded")[0].childNodes[0].nodeValue):null)
     titleArticle.innerHTML = (element.getElementsByTagName("title").length != 0 ? (element.getElementsByTagName("title")[0].childNodes[0].nodeValue):null)

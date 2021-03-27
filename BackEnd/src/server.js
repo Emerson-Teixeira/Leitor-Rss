@@ -68,7 +68,7 @@ var getUserData =  (req,res,next) =>{
 }
 app.use('/entrar',redirectHome,require('./controller/controladorAuten'))
 app.use('/home',redirectLP,getUserData,require('./controller/home'))
-app.use('/opcoes',redirectLP,getUserData, require('./controller/opçoes.js'))
+app.use('/opcoes',redirectLP,getUserData, require('./controller/userMan'))
 app.use('/rss',redirectLP,getUserData,require('./controller/rssMan.js'))
 app.use('/send',require('./controller/email.js'))
 app.use('/search',redirectLP,getUserData,require('./controller/search.js'))
