@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const User = require('../models/userModel')
 const nodemailer = require('nodemailer')
+require('dotenv').config()
 
 router.get('/:id/:email',async (req,res)=>{
     existInDatabase(req.params.id,req.params.email) 
@@ -22,7 +23,7 @@ async function existInDatabase(id,email){
     return boolean
 }
 async function main(id,email){
-    let emailPath = `http://localhost:3000/entrar/validate/${id}`
+    let emailPath = `${process.env.APP_URL}/entrar/validate/${id}`
     let transporter = nodemailer.createTransport({
         service:'Gmail',
         auth: {

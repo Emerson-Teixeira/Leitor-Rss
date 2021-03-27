@@ -1,6 +1,7 @@
 const express = require('express')
 const User = require('../models/userModel')
 const fetch = require('node-fetch')
+require('dotenv').config()
 const router = express.Router();
 var response = {
     message: '',
@@ -14,7 +15,7 @@ router.post('/cadastro', async (req,res) =>{
         const criado = await User.create(req.body)
         const { _id, email } = criado.toObject()
         response.message = 'Cadastro realizado com sucesso, verifique seu email para realizar o login'
-        const urlSend = `http://localhost:3000/send/${_id}/${email}`
+        const urlSend = `${process.env.APP_URL}/send/${_id}/${email}`
         fetch(urlSend,{method: 'GET'})
         return res.status(200).json(response)
     }
