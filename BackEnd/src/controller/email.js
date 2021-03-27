@@ -23,7 +23,7 @@ async function existInDatabase(id,email){
     return boolean
 }
 async function main(id,email){
-    let emailPath = `${process.env.APP_URL}/entrar/validate/${id}`
+    let emailPath = `${process.env.APP_URL}entrar/validate/${id}`
     let transporter = nodemailer.createTransport({
         service:'Gmail',
         auth: {
