@@ -1,0 +1,61 @@
+ <div class="container">
+        <header id="topoFixo">
+            <div id="logoMenu">
+                <div id="logo">J-rss Reader</div>
+            </div>
+             <div id="searchBar">
+                <select name="select" id="selectSearch">
+                        <option value="tags">Tags</option>
+                        <option value="nome">Nome</option>
+                    </select>
+                <form action="/search/tags" method="GET" autocomplete="off" id="searchForm" >
+                    <input type="text" name="q" id="" placeholder="Procure seus feeds por tags">
+                    <input type="submit" value="">
+                </form>
+            </div>
+            <div id="privateInfo">
+                <ul class="dropmenu">    
+                    <li>
+                        <a href="../home" id="nome" class="truncate">Olá, {{nome}}</a>
+                        <ul>
+                            <li> <a href="../opçoes">Configurações</a> </li>
+                            <li>   <a href="../logout">Sair</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="content">
+            <div id="formManage">
+                <h1>Perfil do usuario:</h1>
+
+                <div>
+                    <form action="" method="post">
+                         <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nomeForm" value="{{this.nome}}" disabled>
+                    </form>
+                </div>
+                
+                <div>
+                    <form action="" method="post">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="emailForm" value="{{this.email}}" disabled>
+                    </form>
+                </div>
+
+                <div>
+                    <form action="" method="post">
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" id="senhaForm" value="{{this.senha}}" disabled>
+                    </form>
+                </div>
+
+                <div>
+                    <label for="createdAt">Data de Criação:</label>
+                    <input type="text" name="createdAt" id="createdForm" value="{{this.createdAt}}" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../JS/scriptSearchResult.js"></script>
+    </script>
