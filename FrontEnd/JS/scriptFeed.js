@@ -38,7 +38,7 @@ document.querySelectorAll('.contentRequest').forEach( (item)=>{
 })
 var loadFeed =  async() => {
     var url = window.location.href.split('/')
-    var feed = await fetch(`rss/get/${url[4]}`,{method:'get'}).then(resp =>{
+    var feed = await fetch(`../rss/get/${url[4]}`,{method:'get'}).then(resp =>{
         if(!resp.ok){
             alert('Nao foi possivel obter o feed')
         }
