@@ -8,11 +8,7 @@ const User = require('./models/userModel')
 const cors = require('cors')
 require('dotenv').config()
 
-
-    PORT = 3000,
-    MAX_LIFETIME = 3600000,
-    SESS_NAME = 'sId',
-    SESS_SECRET = 'Eutenhosoquatroanos'
+const{  PORT = 5000, MAX_LIFETIME = 3600000,    SESS_NAME = 'sId', SESS_SECRET = 'Eutenhosoquatroanos'} = process.env
 app.engine('handlebars',handlebars({defaultLayout: 'main',runtimeOptions: {
     allowProtoPropertiesByDefault: true,
     allowProtoMethodsByDefault: true,
@@ -28,7 +24,7 @@ app.use(session({
     saveUninitialized:false,
     name: SESS_NAME,
     cookie:{
-    maxAge: MAX_LIFETIME,
+    maxAge: Number(MAX_LIFETIME),
     sameSite: true,
     secure:false
 }}))
