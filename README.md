@@ -11,9 +11,9 @@
 - [x] Fetch Rss
 - [x] Pesquisa por tags
 - [ ] API Auth google/Facebook
-- [ ] Layout pag config
+- [x] Layout pag config
 - [ ] Alterar senha e nome(RSS/User)
 - [ ] Opçao de gerenciar feed na pagina de leitura
 - [ ] Docker
-- [ ] Variaveis de ambiente
+- [x] Variaveis de ambiente
 - [ ] ...
