@@ -41,19 +41,20 @@ const enviarDados = async (e) => {
     var myInit = {method: 'POST',
     headers: header,
     body: formJson}
-
-    fetch('/rss/add',myInit).then(async(response) =>{
+    document.getElementById('submitFeedButton').setAttribute('disabled','true')
+    await fetch('/rss/add',myInit).then(async(response) =>{
         if(!response.ok){
             alert("Erro ao realizar cadastro")
         }
         else{
-            var jsonCria = await response.json().then(jso => jso)
+            var jsonCria = await response.json()
             criarElemento(jsonCria)
             alert('Feed adicionado com sucesso')
         }
     })
+    document.getElementById('submitFeedButton').removeAttribute('disabled')
  }
-addRss.addEventListener('submit',enviarDados)
+addRss.addEventListener('submit', enviarDados)
 function convertFDtoJSON(formData){
 var obj = {}
 for(let key of formData.keys()){

@@ -5,7 +5,6 @@ const fetch = require('node-fetch')
 const iconv = require('iconv-lite')
 const chardet = require('chardet');
 const { DOMParser } = require('xmldom')
-
 router.post('/add',async (req,res)=>{
     if(await validationNotEqual(req.session.userId,req.body.url)==0){
         var newFeed = {
@@ -52,7 +51,7 @@ router.get('/get/:id', async(req,res)=>{
             });
         }
     })
-      res.status(200).send(await getFeedAsTxt(rss.url))
+      res.status(200).send(JSON.stringify(await getFeedAsTxt(rss.url)))
 })
 
 async function returnNewRss(id,url){
@@ -98,9 +97,14 @@ async function getFeedAsTxt(url){
 
 async function getNameFeed(url){
     feed = await getFeedAsTxt(url);
-    feedAsXML = new DOMParser().parseFromString(feed,'application/xml')
-    return feedAsXML.getElementsByTagName("title")[0].childNodes[0].nodeValue
+    try{
+        feedAsXML = new DOMParser().parseFromString(feed,'application/xml')
+    }
+    catch{
+        return '###### NOT A FEED ######'
+    }
 
+    return feedAsXML.getElementsByTagName("title")[0].childNodes[0].nodeValue
 }
 
 module.exports = router
