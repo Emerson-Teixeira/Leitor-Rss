@@ -7,10 +7,11 @@ const chardet = require('chardet');
 const { DOMParser } = require('xmldom')
 router.post('/add',async (req,res)=>{
     if(await validationNotEqual(req.session.userId,req.body.url)==0){
+        var nome = await getNameFeed(req.body.url)
         var newFeed = {
             url: req.body.url,
             tags: req.body.tags,
-            nome: await getNameFeed(req.body.url)
+            nome
         }
         User.updateOne(req.session.userId,{$push: {rssList:newFeed}}, (err,obj)=>{
             if (err) {
