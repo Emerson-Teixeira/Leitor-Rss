@@ -44,7 +44,7 @@ const enviarDados = async (e) => {
     document.getElementById('submitFeedButton').setAttribute('disabled','true')
     await fetch('/rss/add',myInit).then(async(response) =>{
         if(!response.ok){
-            alert("Erro ao realizar cadastro")
+            alert(await response.json().then(jsn => jsn.message))
         }
         else{
             var jsonCria = await response.json()

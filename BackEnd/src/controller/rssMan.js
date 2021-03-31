@@ -7,18 +7,26 @@ const chardet = require('chardet');
 const { DOMParser } = require('xmldom')
 router.post('/add',async (req,res)=>{
     if(await validationNotEqual(req.session.userId,req.body.url)==0){
-        var nome = await getNameFeed(req.body.url)
-        var newFeed = {
-            url: req.body.url,
-            tags: req.body.tags,
-            nome
-        }
-        User.updateOne(req.session.userId,{$push: {rssList:newFeed}}, (err,obj)=>{
-            if (err) {
-                res.status(500).json({message: err})
+        try{
+            var nome = await getNameFeed(req.body.url)
+            var newFeed = {
+                url: req.body.url,
+                tags: req.body.tags,
+                nome
             }
+        }
+        catch (e){
+            return res.status(500).json({message: 'O link não é um Feed Rss'})
+        }
+       User.updateOne(req.session.userId,{$push: {rssList:newFeed}},async (err,obj)=>{
+            if (err) {
+                return res.status(500).json({message: 'Erro ao cadastrar Feed'})
+            }
+            else{
+                res.status(200).json(await returnNewRss(req.session.userId,req.body.url))
+            }
+            
         })
-        res.status(200).json(await returnNewRss(req.session.userId,req.body.url))
     }
     else{
         res.status(500).json({message: 'Feed ja cadastrado'})
@@ -99,12 +107,24 @@ async function getFeedAsTxt(url){
 async function getNameFeed(url){
     feed = await getFeedAsTxt(url);
     try{
-        feedAsXML = new DOMParser().parseFromString(feed,'application/xml')
+    feedAsXML = new DOMParser({
+        /**
+         * locator is always need for error position info
+         */
+        locator:{},
+        /**
+         * you can override the errorHandler for xml parser
+         * @link http://www.saxproject.org/apidoc/org/xml/sax/ErrorHandler.html
+         */
+        errorHandler:{warning:function(w){},error: (e)=>{throw e},fatalError:(e)=>{throw e}}
+        //only callback model
+        //errorHandler:function(level,msg){console.log(level,msg)}
+    }).parseFromString(feed,'application/xml')
     }
-    catch (err){
-        return '###### NOT A FEED ######'
+    catch (e) {
+        throw e
     }
-
+    
     return feedAsXML.getElementsByTagName("title")[0].childNodes[0].nodeValue
 }
 
