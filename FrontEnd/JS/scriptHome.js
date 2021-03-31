@@ -36,7 +36,6 @@ function criarElemento(formJson){
 const enviarDados = async (e) => {
     e.preventDefault();
     var formJson =  convertFDtoJSON(new FormData(addRss))
-    console.log(formJson)
     var header = new Headers({'Content-Type': 'application/json'})
     var myInit = {method: 'POST',
     headers: header,
@@ -48,7 +47,6 @@ const enviarDados = async (e) => {
         }
         else{
             var jsonCria = await response.json()
-            console.log(jsonCria)
             criarElemento(jsonCria)
             alert('Feed adicionado com sucesso')
         }
