@@ -48,6 +48,7 @@ const enviarDados = async (e) => {
         }
         else{
             var jsonCria = await response.json()
+            console.log(jsonCria)
             criarElemento(jsonCria)
             alert('Feed adicionado com sucesso')
         }
