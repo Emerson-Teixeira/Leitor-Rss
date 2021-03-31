@@ -12,7 +12,7 @@ router.post('/add',async (req,res)=>{
             tags: req.body.tags,
             nome: await getNameFeed(req.body.url)
         }
-        User.updateOne(req.session.userId,{$push: {rssList:newFeed}}, async (err,obj)=>{
+        User.updateOne(req.session.userId,{$push: {rssList:newFeed}}, (err,obj)=>{
             if (err) {
                 res.status(500).json({message: err})
             }
@@ -51,7 +51,7 @@ router.get('/get/:id', async(req,res)=>{
             });
         }
     })
-      res.status(200).send(JSON.stringify(await getFeedAsTxt(rss.url)))
+      res.status(200).send(await getFeedAsTxt(rss.url))
 })
 
 async function returnNewRss(id,url){
@@ -100,7 +100,7 @@ async function getNameFeed(url){
     try{
         feedAsXML = new DOMParser().parseFromString(feed,'application/xml')
     }
-    catch{
+    catch (err){
         return '###### NOT A FEED ######'
     }
 
