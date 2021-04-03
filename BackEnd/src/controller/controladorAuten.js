@@ -12,10 +12,11 @@ var response = {
 router.post('/cadastro', async (req,res) =>{
     setJsonResponseClear()
     try{
-        const criado = await User.create(req.body)
-        const { _id, email } = criado.toObject()
+        const {email,senha,nome} = req.body
+        const criado = await User.create({nome,email,senha})
+        const { _id, emailB } = criado.toObject()
         response.message = 'Cadastro realizado com sucesso, verifique seu email para realizar o login'
-        const urlSend = `${process.env.APP_URL}send/${_id}/${email}`
+        const urlSend = `${process.env.APP_URL}send/${_id}/${emailB}`
         fetch(urlSend,{method: 'GET'})
         return res.status(200).json(response)
     }
@@ -30,11 +31,12 @@ router.post('/cadastro', async (req,res) =>{
 router.post('/login', async (req,res) =>{
     setJsonResponseClear()
     try{
-        const user = await User.findOne(req.body)
+        const {email,senha} = req.body
+        const user = await User.findOne({email,senha})
         if((!user))
-            throw (err = 1) 
+            throw 1
         if (!user.validacaoEmail)
-            throw (err = 2)     
+            throw 2     
         const { _id } = user.toObject()
         req.session.userId = {'_id':_id}
         response.message = "Login realizado com sucesso"
@@ -48,7 +50,6 @@ router.post('/login', async (req,res) =>{
         if (err == 2 ){
             res.status(401).json({message: 'É necessario realizar a validaçao no email'})
         }
-        
     }
 })
 
