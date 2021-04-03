@@ -4,7 +4,7 @@ const crypto = require('crypto')
 const modeloUsuario = new mongoose.Schema({
     nome:{
         type: String,
-        require: true,
+        required: true,
     },
     validacaoEmail:{
         type:Boolean,
@@ -12,13 +12,13 @@ const modeloUsuario = new mongoose.Schema({
     },
     email:{
         type: String,
-        require: true,
+        required: true,
         unique: true,
         lowercase: true
     },
     senha:{
         type: String,
-        require: true,
+        required: true,
         select: false,
         set: value => crypto.createHash('md5').update(value).digest('hex')
     },
