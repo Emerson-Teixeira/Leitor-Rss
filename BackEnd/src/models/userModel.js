@@ -27,6 +27,10 @@ const modeloUsuario = new mongoose.Schema({
         tags:{type:[String]},
         nome:String
     }],
+    googleSub:{
+        type:String,
+        unique: true
+    },
     createdAt:{
         type:Date,
         default: Date.now,

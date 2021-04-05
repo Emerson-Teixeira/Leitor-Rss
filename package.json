@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
+    "google-auth-library": "^7.0.3",
     "handlebars": "^4.7.7",
     "iconv-lite": "^0.6.2",
     "mongoose": "^5.11.16",

@@ -2,8 +2,12 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="902728784391-a78qs4rd2inb0fbn9vtp6b2b2hutstm6.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js"></script>
     <title>Login</title>
     <link rel="stylesheet" href="../CSS/styleLogin.css">
+
 </head>
 <body>
         <div id="container">
@@ -17,11 +21,8 @@
                     <input type="text" name="email" id="emailLogin" autofocus placeholder="Email">
                     <input type="password" name="senha" id="senhaLogin" placeholder="Senha">
                     <input id="submitLoginButton" type="submit" value="Entrar">
-                    <div id="signInAPI">
-                        <button type = "button" id="logGoogle">Google</button>
-                        <button type = "button" id="logFacebook">Facebook</button>
-                    </div>
                 </form>
+                <div class="g-signin2" data-width="500" data-height="60" data-longtitle="true" data-theme="dark" data-onsuccess="onSignIn"></div>
                 <div id="cadastro">
                     <button id="activeCadastro">Crie uma Conta</button>
                 </div>

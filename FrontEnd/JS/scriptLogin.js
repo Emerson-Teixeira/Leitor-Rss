@@ -62,3 +62,26 @@ function convertFDtoJSON(formData){
     }
     return JSON.stringify(obj)
 }
+
+//google Tutorial
+function onSignIn(googleUser) {
+    var id_token = googleUser.getAuthResponse().id_token;
+    var obj = {id_token}
+    obj = JSON.stringify(obj)
+    console.log(obj)
+    var header = new Headers({'Content-Type': 'application/json'})
+    var myInit = {method: 'POST',
+    headers: header,
+    body: obj}
+
+    fetch('/entrar/SignGoogle',myInit).then(async (response) =>{
+        if(response.ok){
+            window.location.href = '/home'
+        }
+        else{
+            var msg =  await response.json().then(jsn => jsn)
+            alert(msg.message)
+        }
+    })
+  }
+  

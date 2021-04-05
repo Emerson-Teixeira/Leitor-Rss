@@ -91,3 +91,23 @@ const formSearch = document.getElementById('searchForm')
 select.addEventListener('change',(e)=>{
         formSearch.setAttribute('action',`/search/${select.value}`)
 })
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+    fetch("/logout").then((resp)=>{
+        if(resp.ok){
+            window.location.href = "/"
+        }
+        else{
+            alert("Não foi possivel fazer o Logout")
+        }
+    })
+}
+function Sair(){
+    gapi.load('auth2', function() {
+        gapi.auth2.init();
+    });
+}
