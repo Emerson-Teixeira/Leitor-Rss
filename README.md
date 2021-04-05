@@ -10,10 +10,8 @@
 - [x] Verificação em duas etapas (email)
 - [x] Fetch Rss
 - [x] Pesquisa por tags
-- [ ] API Auth google/Facebook
+- [x] API Auth google/Facebook
 - [x] Layout pag config
-- [ ] Alterar senha e nome(RSS/User)
-- [ ] Opçao de gerenciar feed na pagina de leitura
 - [ ] Docker
 - [x] Variaveis de ambiente
 - [ ] ...
