@@ -81,7 +81,22 @@ function onSignIn(googleUser) {
         else{
             var msg =  await response.json().then(jsn => jsn)
             alert(msg.message)
+            signOut()
+            
         }
     })
   }
-  
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+    fetch("/logout").then((resp)=>{
+        if(resp.ok){
+            window.location.href = "/"
+        }
+        else{
+            alert("Não foi possivel fazer o Logout")
+        }
+    })
+}

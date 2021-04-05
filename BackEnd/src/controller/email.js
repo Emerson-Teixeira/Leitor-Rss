@@ -27,8 +27,8 @@ async function main(id,email){
     let transporter = nodemailer.createTransport({
         service:'Gmail',
         auth: {
-            user: 'jrssreadersender@gmail.com',
-            pass: '12345asd@'
+            user: process.env.EMAIL_USER,
+            pass: process.env.SENHA_EMAIL
         }
     })
   var status =  await  transporter.sendMail({
@@ -41,7 +41,7 @@ async function main(id,email){
                 <hr><br>
                 <h2><a href = ${emailPath}>clique aqui</a> para validar sua conta</h2>`
     }).then(resp=>resp).catch(err => err) 
-
+    console.log(status)
     return status
 }
 
