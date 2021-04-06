@@ -26,11 +26,10 @@ async function verify(id_token) {
   }
 router.post('/cadastro', async (req,res) =>{
     setJsonResponseClear()
-
     try{
         const {email,senha,nome} = req.body
-        const criado = await User.create({nome,email,senha})
-        const { _id } = criado.toObject()
+        const criado = await User.create({nome,email,senha,googleSub:email})
+        const {_id} = criado.toObject()
         response.message = 'Cadastro realizado com sucesso, verifique seu email para realizar o login'
         const urlSend = `${process.env.APP_URL}send/${_id}/${email}`
         fetch(urlSend,{method: 'GET'})

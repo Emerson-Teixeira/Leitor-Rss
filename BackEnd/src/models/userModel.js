@@ -29,7 +29,7 @@ const modeloUsuario = new mongoose.Schema({
     }],
     googleSub:{
         type:String,
-        unique: true
+        unique:true
     },
     createdAt:{
         type:Date,
