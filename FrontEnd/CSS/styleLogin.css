@@ -46,6 +46,7 @@ body{
     padding-top: 100px;
     order: 1;
  }
+
  #login{
      display: flex;
      justify-content: center;
@@ -58,8 +59,9 @@ body{
      box-shadow: 5px 5px 5px black;
      padding: 50px 30px;
      order: 2;
-     margin-top: 50px;
+     margin-top: 100px;
  }
+
  #login form{
      position: relative;
      width: 550px;
