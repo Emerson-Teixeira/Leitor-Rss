@@ -12,6 +12,5 @@
 - [x] Pesquisa por tags
 - [x] API Auth google/Facebook
 - [x] Layout pag config
-- [ ] Docker
 - [x] Variaveis de ambiente
 - [ ] ...
