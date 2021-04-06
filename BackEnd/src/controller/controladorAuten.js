@@ -76,7 +76,6 @@ router.get('/validate/:id',async (req,res)=>{
             response.message = 'Não foi possivel realizar a validaçao'
             response.error = true
             response.errorLog = err
-            console.log(err)
             res.status(404).json(response)
         }
     })

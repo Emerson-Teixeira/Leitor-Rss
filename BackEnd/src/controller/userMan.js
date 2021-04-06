@@ -9,7 +9,6 @@ router.get('/',async (req,res)=>{
             return user
         }
     })
-    console.log(usuario)
     res.render('Configs',usuario)
 })
 
