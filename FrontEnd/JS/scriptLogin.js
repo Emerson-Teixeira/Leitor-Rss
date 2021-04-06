@@ -49,7 +49,7 @@ const verificarDados = async (e) => {
             alert(msg.message)
         }
         else
-        window.location.href = '/home'
+        document.location.assign('/home')
     })
 }
 formLogin.addEventListener('submit',verificarDados)
@@ -76,7 +76,7 @@ function onSignIn(googleUser) {
 
     fetch('/entrar/SignGoogle',myInit).then(async (response) =>{
         if(response.ok){
-            window.location.href = '/home'
+            document.location.assign('/home')
         }
         else{
             var msg =  await response.json().then(jsn => jsn)
@@ -93,7 +93,6 @@ function onSignIn(googleUser) {
     });
     fetch("/logout").then((resp)=>{
         if(resp.ok){
-            window.location.href = "/"
         }
         else{
             alert("Não foi possivel fazer o Logout")
