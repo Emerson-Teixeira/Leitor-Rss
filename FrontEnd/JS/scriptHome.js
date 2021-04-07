@@ -126,3 +126,6 @@ function Sair(){
         gapi.auth2.init();
     });
 }
+if(performance.navigation.type == 2){
+    location.reload(true);
+ }

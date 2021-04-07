@@ -68,6 +68,7 @@ header#topoFixo{
     justify-content: space-between;
     align-items: center;
     margin-left: 5px;
+    height: 60px;
 }
 .sideBar{
     width: 40px;

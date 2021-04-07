@@ -60,8 +60,8 @@ router.get('/get/:id', async(req,res)=>{
             });
         }
     })
-    if(!rss.url){
-        res.redirect("/")
+    if(!rss){
+        return res.status(404).send({Error: 'Error'})
     }
       res.status(200).send(await getFeedAsTxt(rss.url))
 })
