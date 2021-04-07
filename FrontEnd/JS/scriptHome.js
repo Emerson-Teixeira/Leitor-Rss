@@ -46,9 +46,14 @@ const enviarDados = async (e) => {
             alert(await response.json().then(jsn => jsn.message))
         }
         else{
-            var jsonCria = await response.json()
-            criarElemento(jsonCria)
-            alert('Feed adicionado com sucesso')
+            try{
+                var jsonCria = await response.json()
+                criarElemento(jsonCria)
+                alert('Feed adicionado com sucesso')
+            }
+            catch (err) {
+                window.location.href = "/"
+            }
         }
     })
     document.getElementById('submitFeedButton').removeAttribute('disabled')
@@ -91,7 +96,6 @@ var fazerRequisicao = (e) => {
          id = obj.getAttribute("data-id")
          window.location.href = `/feed/${id}`
     }
-    
 }
 document.querySelectorAll('.contentRequest').forEach( (item)=>{
     item.addEventListener('click',fazerRequisicao)
@@ -107,7 +111,6 @@ select.addEventListener('change',(e)=>{
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-      console.log('User signed out.');
     });
     fetch("/logout").then((resp)=>{
         if(resp.ok){

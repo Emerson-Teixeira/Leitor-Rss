@@ -4,8 +4,7 @@ const User = require('../models/userModel')
 const nodemailer = require('nodemailer')
 require('dotenv').config()
 
-router.get('/:id/:email',async (req,res)=>{
-    existInDatabase(req.params.id,req.params.email) 
+router.get('/:id/:email',async (req,res)=>{ 
     if (await existInDatabase(req.params.id,req.params.email) == true){
         var status = await main(req.params.id,req.params.email)
         res.json({message: status})

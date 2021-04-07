@@ -60,6 +60,9 @@ router.get('/get/:id', async(req,res)=>{
             });
         }
     })
+    if(!rss.url){
+        res.redirect("/")
+    }
       res.status(200).send(await getFeedAsTxt(rss.url))
 })
 
