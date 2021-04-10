@@ -16,12 +16,6 @@ const modeloUsuario = new mongoose.Schema({
         unique: true,
         lowercase: true
     },
-    senha:{
-        type: String,
-        required: true,
-        select: false,
-        set: value => crypto.createHash('md5').update(value).digest('hex')
-    },
     rssList:[{
         url:String,
         tags:{type:[String]},
@@ -29,7 +23,14 @@ const modeloUsuario = new mongoose.Schema({
     }],
     googleSub:{
         type:String,
-        unique:true
+        unique:true,
+        sparse: true
+    },
+    senha:{
+        type: String,
+        required: ()=>{ return (this.googleSub != null)},
+        select: false,
+        set: value => crypto.createHash('md5').update(value).digest('hex')
     },
     createdAt:{
         type:Date,

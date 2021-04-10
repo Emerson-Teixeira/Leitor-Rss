@@ -28,7 +28,7 @@ router.post('/cadastro', async (req,res) =>{
     setJsonResponseClear()
     try{
         const {email,senha,nome} = req.body
-        const criado = await User.create({nome,email,senha,googleSub:email})
+        const criado = await User.create({nome,email,senha})
         const {_id} = criado.toObject()
         response.message = 'Cadastro realizado com sucesso, verifique seu email para realizar o login'
         const urlSend = `${process.env.APP_URL}send/${_id}/${email}`
@@ -37,6 +37,7 @@ router.post('/cadastro', async (req,res) =>{
     }
 
     catch (err){
+        console.error(err)
         response.message = 'Erro ao realizar cadastro'
         response.error = true,
         response.errorLog = err
@@ -107,7 +108,7 @@ router.post('/SignGoogle', async (req,res)=>{
             }
             else{
                 try{
-                    const criado = await User.create({nome:google.given_name,email:google.email,googleSub:google.sub,validacaoEmail:google.email_verified,senha:crypto.createHash('sha1').update(google.email + google.sub).digest('hex')})
+                    const criado = await User.create({nome:google.given_name,email:google.email,googleSub:google.sub,validacaoEmail:google.email_verified})
                     const { _id, email,validacaoEmail } = criado.toObject()
                     if(!validacaoEmail){
                         response.message = 'Cadastro realizado com sucesso, verifique seu email para realizar o login'
