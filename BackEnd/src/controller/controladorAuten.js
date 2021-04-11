@@ -108,6 +108,7 @@ router.post('/SignGoogle', async (req,res)=>{
             }
             else{
                 try{
+                    console.log(google.sub)
                     const criado = await User.create({nome:google.given_name,email:google.email,googleSub:google.sub,validacaoEmail:google.email_verified})
                     const { _id, email,validacaoEmail } = criado.toObject()
                     if(!validacaoEmail){

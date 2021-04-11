@@ -28,7 +28,9 @@ const modeloUsuario = new mongoose.Schema({
     },
     senha:{
         type: String,
-        required: ()=>{ return (this.googleSub != null)},
+        required: function (){ 
+            return (typeof this.googleSub != 'string')
+        },
         select: false,
         set: value => crypto.createHash('md5').update(value).digest('hex')
     },
