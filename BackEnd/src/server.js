@@ -8,7 +8,7 @@ const User = require('./models/userModel')
 const cors = require('cors')
 require('dotenv').config()
 
-const{  PORT = 5000, MAX_LIFETIME = 3600000,    SESS_NAME = 'sId', SESS_SECRET = 'Eutenhosoquatroanos'} = process.env
+const{  PORT = 5000, MAX_LIFETIME = 3600000,    SESS_NAME = 'sId', SESS_SECRET = 'AbfaperFAsdfefs'} = process.env
 app.engine('handlebars',handlebars({defaultLayout: 'main',runtimeOptions: {
     allowProtoPropertiesByDefault: true,
     allowProtoMethodsByDefault: true,
