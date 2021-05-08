@@ -1,5 +1,5 @@
 # Trabalho ProgWeb
-Leitor de rss feito com NodeJs Link(jrss-reader.herokuapp.com)
+Leitor de rss feito com NodeJs Link (jrss-reader.herokuapp.com)
 
 - [x] Conexao banco de dados
 - [x] Criaçao do Model
